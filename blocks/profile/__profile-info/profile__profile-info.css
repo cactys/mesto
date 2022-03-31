@@ -1,0 +1,6 @@
+.profile__profile-info {
+  max-width: 336px;
+  max-height: 73px;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,6 +1,6 @@
 .form__title {
   font-weight: 900;
   font-size: 24px;
-  line-height: 29px;
+  line-height: calc(29 / 24);
   margin: 0 0 54px;
 }

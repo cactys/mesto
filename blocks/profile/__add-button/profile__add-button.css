@@ -8,11 +8,12 @@
   border-radius: 2%;
   cursor: pointer;
   background-image: url(../../../images/profile__plus.svg);
-  background-position: 50%;
+  background-position: center;
   background-repeat: no-repeat;
+  font-size: 0px;
   transition: opacity .4s;
 }
 
 .profile__add-button:hover {
-  opacity: .6;
+  opacity: .5;
 }

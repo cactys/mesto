@@ -1,19 +1,19 @@
-.profile__edit-button {
+.card__like-button {
   padding: 0;
   box-sizing: border-box;
   width: 24px;
   height: 24px;
-  border: 1px solid #FFF;
-  background-color: #000;
+  border: 0px;
+  background-color: #fff;
   cursor: pointer;
-  background-image: url(../../../images/profile__pen.svg);
+  background-image: url(../../../images/card__like_disabled.svg);
   background-position: center;
   background-repeat: no-repeat;
   align-self: center;
   font-size: 0px;
-  transition: opacity .4s;
+  transition: opacity 0.4s;
 }
 
-.profile__edit-button:hover {
+.card__like-button:hover {
   opacity: .5;
 }

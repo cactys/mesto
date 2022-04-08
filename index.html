@@ -10,109 +10,112 @@
 </head>
 
 <body class="body">
-  <header class="header">
-    <div class="header__logo"></div>
-  </header>
+  <div class="page">
+    <header class="header">
+      <div class="header__logo"></div>
+    </header>
 
-  <main class="content">
-    <section class="profile">
-      <div class="profile__data">
-        <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
-        <div class="profile__profile-info">
-          <div class="profile__author-info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button">Редактировать</button>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__data">
+          <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
+          <div class="profile__profile-info">
+            <div class="profile__author-info">
+              <h1 class="profile__title">Жак-Ив Кусто</h1>
+              <button type="button" class="profile__edit-button">Редактировать</button>
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
         </div>
+        <button type="button" class="profile__add-button">Добавить фото</button>
+      </section>
+
+      <section class="grid">
+        <ul class="cards">
+          <li class="card">
+            <img src="./images/element-1.jpg" alt="Карачаевск" class="card__image">
+            <div class="card__description">
+              <h3 class="card__title">Карачаевск</h3>
+              <button type="button" class="card__like-button">Нравиться</button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/element-2.jpg" alt="Гора Эльбрус" class="card__image">
+            <div class="card__description">
+              <h3 class="card__title">Гора Эльбрус</h3>
+              <button type="button" class="card__like-button">Нравиться</button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/element-3.jpg" alt="Домбай" class="card__image">
+            <div class="card__description">
+              <h3 class="card__title">Домбай</h3>
+              <button type="button" class="card__like-button">Нравиться</button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/element-3.jpg" alt="Домбай" class="card__image">
+            <div class="card__description">
+              <h3 class="card__title">Домбай</h3>
+              <button type="button" class="card__like-button">Нравиться</button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/element-1.jpg" alt="Карачаевск" class="card__image">
+            <div class="card__description">
+              <h3 class="card__title">Карачаевск</h3>
+              <button type="button" class="card__like-button">Нравиться</button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/element-2.jpg" alt="Гора Эльбрус" class="card__image">
+            <div class="card__description">
+              <h3 class="card__title">Гора Эльбрус</h3>
+              <button type="button" class="card__like-button">Нравиться</button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <div class="popup popup_type_profile popup_opened">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">Закрыть</button>
+        <form action="/" method="POST" class="form" name="edit-profile">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <div class="form__field">
+            <input type="text" value="Жак-Ив Кусто" placeholder="Ваше имя" class="form__input" name="profile-name" id="profile-name" minlength="2" maxlength="40" required="">
+          </div>
+          <div class="form__field">
+            <input type="text" value="Исследователь океана" placeholder="Чем занимаетесь?" class="form__input" name="profile-job" id="profile-job" minlength="2" maxlength="200" required="">
+          </div>
+          <button type="submit" class="form__submit">Сохранить</button>
+        </form>
       </div>
-      <button type="button" class="profile__add-button">Добавить фото</button>
-    </section>
-
-    <section class="grid">
-      <ul class="cards">
-        <li class="card">
-          <img src="./images/element-1.jpg" alt="Карачаевск" class="card__image">
-          <div class="card__description">
-            <h3 class="card__title">Карачаевск</h3>
-            <button type="button" class="card__like-button">Нравиться</button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/element-2.jpg" alt="Гора Эльбрус" class="card__image">
-          <div class="card__description">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <button type="button" class="card__like-button">Гора Эльбрус</button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/element-3.jpg" alt="Домбай" class="card__image">
-          <div class="card__description">
-            <h3 class="card__title">Домбай</h3>
-            <button type="button" class="card__like-button">Домбай</button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/element-3.jpg" alt="Домбай" class="card__image">
-          <div class="card__description">
-            <h3 class="card__title">Домбай</h3>
-            <button type="button" class="card__like-button">Домбай</button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/element-1.jpg" alt="Карачаевск" class="card__image">
-          <div class="card__description">
-            <h3 class="card__title">Карачаевск</h3>
-            <button type="button" class="card__like-button">Нравиться</button>
-          </div>
-        </li>
-        <li class="card">
-          <img src="./images/element-2.jpg" alt="Гора Эльбрус" class="card__image">
-          <div class="card__description">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <button type="button" class="card__like-button">Гора Эльбрус</button>
-          </div>
-        </li>
-      </ul>
-    </section>
-  </main>
-
-  <div class="popup popup_type_profile">
-    <div class="popup__container">
-      <button class="popup__close-button" type="button">Закрыть</button>
-      <form action="/" method="POST" class="form" name="edit-profile">
-        <h2 class="form__title">Редактировать профиль</h2>
-        <div class="form__field">
-          <input type="text" value="Жак-Ив Кусто" placeholder="Ваше имя" class="form__input" name="profile-name" id="profile-name" minlength="2" maxlength="40" required="">
-        </div>
-        <div class="form__field">
-          <input type="text" value="Исследователь океана" placeholder="Чем занимаетесь?" class="form__input" name="profile-job" id="profile-job" minlength="2" maxlength="200" required="">
-        </div>
-        <button type="submit" class="form__submit">Сохранить</button>
-      </form>
     </div>
-  </div>
 
-  <div class="popup popup_type_photo">
-    <div class="popup__container">
-      <button class="popup__close-button" type="button">Закрыть</button>
-      <form action="/" method="POST" class="form" name="add-photo">
-        <h2 class="form__title">Новое место</h2>
-        <div class="form__field">
-          <input type="text" value="" placeholder="Название" class="form__input" name="photo-title" id="photo-title" required="" minlength="2" maxlength="30">
-        </div>
-        <div class="form__field">
-          <input type="url" value="" placeholder="Ссылка на картинку" class="form__input" name="photo-src" id="photo-src" required="">
-        </div>
-        <button type="submit" class="form__submit">Сохранить</button>
-      </form>
+    <div class="popup popup_type_photo">
+      <div class="popup__container">
+        <button class="popup__close-button" type="button">Закрыть</button>
+        <form action="/" method="POST" class="form" name="add-photo">
+          <h2 class="form__title">Новое место</h2>
+          <div class="form__field">
+            <input type="text" value="" placeholder="Название" class="form__input" name="photo-title" id="photo-title" required="" minlength="2" maxlength="30">
+          </div>
+          <div class="form__field">
+            <input type="url" value="" placeholder="Ссылка на картинку" class="form__input" name="photo-src"
+              id="photo-src" required="">
+          </div>
+          <button type="submit" class="form__submit">Сохранить</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <footer class="footer">
-    <a class="footer__copyright">&copy; 2020 Mesto Russia</a>
-  </footer>
-  <script src="./scripts/index.js"></script>
+    <footer class="footer">
+      <a class="footer__copyright">&copy; 2020 Mesto Russia</a>
+    </footer>
+    <script src="./scripts/index.js"></script>
+  </div>
 </body>
 
 </html>

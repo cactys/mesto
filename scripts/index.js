@@ -49,11 +49,16 @@ function formSubmitHandler(evt) {
                           // О том, как это делать, расскажем позже.
 
   // Получите значение полей jobInput и nameInput из свойства value
-  console.log(nameInput);
+  let nameValue = nameInput.value;
+  let jobValue = jobInput.value;
 
   // Выберите элементы, куда должны быть вставлены значения полей
+  let nameProfile = document.querySelector('.profile__title');
+  let jobProfile = document.querySelector('.profile__subtitle');
 
   // Вставьте новые значения с помощью textContent
+  nameProfile.textContent = nameValue;
+  jobProfile.textContent = jobValue;
 }
 
 // Прикрепляем обработчик к форме:

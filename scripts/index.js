@@ -27,13 +27,6 @@ closeButton.forEach(function (arrElement) {
 editButton.addEventListener('click', function () { openPopup(popupProfile); });
 addButton.addEventListener('click', function () { openPopup(popupPhoto); });
 
-// ==== lick button ====
-for (let lickButton of document.querySelectorAll(".card__like-button")) {
-  lickButton.addEventListener("click", function () {
-    this.classList.toggle("card__like-button_active");
-  });
-}
-
 // ==== работа с формами ====
 // Находим форму в DOM
 let formElement = document.querySelector('.form'); // Воспользуйтесь методом querySelector()

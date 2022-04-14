@@ -1,6 +1,5 @@
 # Mesto
 ## Проектная работа студента Яндекс.Практикум
-___
 Четвертая проектная работа.  
 + Вёрстка по макету
   - [Figma макет](https://www.figma.com/file/FwbxqeyjpfDI5YAxPnpc65/JavaScript.-Sprint-4?node-id=28212%3A155)

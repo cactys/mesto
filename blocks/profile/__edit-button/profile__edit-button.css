@@ -2,7 +2,7 @@
   padding: 0;
   width: 24px;
   height: 24px;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   background-color: #000;
   cursor: pointer;
   background-image: url(../../../images/profile__pen.svg);
@@ -10,11 +10,11 @@
   background-repeat: no-repeat;
   align-self: center;
   font-size: 0px;
-  transition: opacity .4s;
+  transition: opacity 0.4s;
 }
 
 .profile__edit-button:hover {
-  opacity: .5;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 320px) {

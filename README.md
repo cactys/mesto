@@ -8,9 +8,9 @@ ___
 + Переполнение содержимого в блоке
   ```css
   .block {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   ```
 + JavaScript

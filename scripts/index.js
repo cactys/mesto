@@ -2,7 +2,6 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button')
 const closeButton = document.querySelector('.popup__close-button');
 const popupProfile = document.querySelector('.popup_type_profile');
-const popupPhoto = document.querySelector('.popup_type_photo');
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
 

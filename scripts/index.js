@@ -1,5 +1,5 @@
 // ==== Cards ====
-// список карточек
+// масив карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -32,7 +32,9 @@ const cardsContainer = document.querySelector('.cards');
 
 // ==== card ====
 // шаблон
-const cardTemplate = document.querySelector('#card-template').content.querySelector('.card');
+const cardTemplate = document
+  .querySelector('#card-template')
+  .content.querySelector('.card');
 
 // генератор карточек
 const generateCard = (cardData) => {

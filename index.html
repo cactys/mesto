@@ -42,12 +42,12 @@
     <div class="popup popup_type_profile">
       <div class="popup__container">
         <button class="popup__close-button" type="button">Закрыть</button>
-        <form class="form" name="edit-profile">
+        <form class="form form_edit-profile">
           <h2 class="form__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" name="profile-name" id="profile-name"
+          <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" name="profile-name"
             minlength="2" maxlength="40" />
-          <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job" name="profile-job" id="profile-job"
-            minlength="2" maxlength="200" />
+          <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job"
+            name="profile-job" minlength="2" maxlength="200" />
           <button type="submit" class="form__submit">Сохранить</button>
         </form>
       </div>
@@ -56,12 +56,12 @@
     <div class="popup popup_type_photo">
       <div class="popup__container">
         <button class="popup__close-button" type="button">Закрыть</button>
-        <form class="form" name="add-photo">
+        <form class="form form_add-photo">
           <h2 class="form__title">Новое место</h2>
-          <input type="text" placeholder="Название" class="form__input" name="photo-title" id="photo-title" required=""
-            minlength="2" maxlength="40" />
-          <input type="url" placeholder="Ссылка на картинку" class="form__input" name="photo-src" id="photo-src"
-            required="" />
+          <input type="text" placeholder="Название" class="form__input form__input_photo-title" name="photo-title"
+            required="" minlength="2" maxlength="40" />
+          <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src"
+            name="photo-src" required="" />
           <button type="submit" class="form__submit">Сохранить</button>
         </form>
       </div>

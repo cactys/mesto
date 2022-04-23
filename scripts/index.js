@@ -1,3 +1,8 @@
+// DOM элеиенты
+const closeButton = document.querySelectorAll('.popup__close-button');
+const popupProfile = document.querySelector('.popup_type_profile');
+const popupPhoto = document.querySelector('.popup_type_photo');
+
 // ==== Cards ====
 // масив карточек
 const initialCards = [
@@ -27,68 +32,64 @@ const initialCards = [
   },
 ];
 
-// DOM элемент карт
+// DOM элемент
 const cardsContainer = document.querySelector('.cards');
+const formPhoto = document.querySelector('.form_add-photo');
+const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title');
+const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src');
 
 // ==== card ====
-// шаблон
-const cardTemplate = document
-  .querySelector('#card-template')
-  .content.querySelector('.card');
+// Обработчик событий
+const handleSubmitAddCardForm = (evt) => {
+  evt.preventDefault();
 
-// генератор карточек
-const generateCard = (cardData) => {
-  const newCard = cardTemplate.cloneNode(true);
+  targetPopup(popupPhoto);
 
-  const nameCard = newCard.querySelector('.card__name');
-  nameCard.textContent = cardData.name;
-  const linkCard = newCard.querySelector('.card__image');
-  linkCard.src = cardData.link;
+  renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
 
-  // const deleteButton = newTodoCard.querySelector(
-  //   '.todo-card__button_type_delete'
-  // );
-  // deleteButton.addEventListener('click', handleDeleteTodoCard);
-
-  // const checkButton = newTodoCard.querySelector(
-  //   '.todo-card__button_type_check'
-  // );
-  // checkButton.addEventListener('click', handleCheckTodoCard);
-
-  return newCard;
+  inputPhotoTitle.value = '';
+  inputPhotoSrc.value = '';
 };
 
 // rendering card
 const renderingCard = (cardData) => {
-  cardsContainer.prepend(generateCard(cardData));
+  cardsContainer.insertAdjacentHTML(
+    "afterbegin",
+    `
+    <li class="card">
+      <img class="card__image" src="${cardData.link}" />
+      <div class="card__description">
+        <h3 class="card__name">${cardData.name}</h3>
+        <button class="card__like-button"></button>
+      </div>
+    </li>
+    `
+  );
 };
 
 initialCards.forEach((cardData) => {
   renderingCard(cardData);
 });
 
+formPhoto.addEventListener('submit', handleSubmitAddCardForm);
+
 // ==== Forms & popups ====
 // DOM элементы forms & popups
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const closeButton = document.querySelectorAll('.popup__close-button');
-const popupProfile = document.querySelector('.popup_type_profile');
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
-const popupPhoto = document.querySelector('.popup_type_photo');
-const namePhoto = document.querySelector('.card__title');
-const urlPhoto = document.querySelector('.card__image');
 
 // ==== работа с формами profile ====
 // Находим форму в DOM
-let formElement = document.querySelector('.form');
+const formProfile = document.querySelector('.form_edit-profile');
 // Находим поля формы в DOM
-let nameInput = formElement.querySelector('.form__input_profile-name');
-let jobInput = formElement.querySelector('.form__input_profile-job');
+const nameInput = formProfile.querySelector('.form__input_profile-name');
+const jobInput = formProfile.querySelector('.form__input_profile-job');
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler(evt) {
+function handleSubmitEditProfileForm(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   // Так мы можем определить свою логику отправки.
   // О том, как это делать, расскажем позже.
@@ -102,7 +103,8 @@ function formSubmitHandler(evt) {
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', handleSubmitEditProfileForm);
+
 
 // ==== pop-up's ====
 // функция открыть/закрыть попап
@@ -129,3 +131,4 @@ editButton.addEventListener('click', function () {
 addButton.addEventListener('click', function () {
   targetPopup(popupPhoto);
 });
+

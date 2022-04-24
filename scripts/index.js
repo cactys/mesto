@@ -32,6 +32,11 @@ const initialCards = [
   },
 ];
 
+// Шаблон
+const cardTemplate = document
+  .querySelector('#card-template')
+  .content.querySelector('.card');
+
 // DOM элемент
 const cardsContainer = document.querySelector('.cards');
 const formPhoto = document.querySelector('.form_add-photo');
@@ -51,20 +56,21 @@ const handleSubmitAddCardForm = (evt) => {
   inputPhotoSrc.value = '';
 };
 
+// generate card
+const generateCard = (cardData) => {
+  const newCard = cardTemplate.cloneNode(true);
+
+  const cardImage = newCard.querySelector('.card__image');
+  cardImage.src = cardData.link;
+  const cardTitle = newCard.querySelector('.card__name');
+  cardTitle.textContent = cardData.name;
+
+  return newCard;
+};
+
 // rendering card
 const renderingCard = (cardData) => {
-  cardsContainer.insertAdjacentHTML(
-    "afterbegin",
-    `
-    <li class="card">
-      <img class="card__image" src="${cardData.link}" />
-      <div class="card__description">
-        <h3 class="card__name">${cardData.name}</h3>
-        <button class="card__like-button"></button>
-      </div>
-    </li>
-    `
-  );
+  cardsContainer.prepend(generateCard(cardData));
 };
 
 initialCards.forEach((cardData) => {
@@ -105,7 +111,6 @@ function handleSubmitEditProfileForm(evt) {
 // он будет следить за событием “submit” - «отправка»
 formProfile.addEventListener('submit', handleSubmitEditProfileForm);
 
-
 // ==== pop-up's ====
 // функция открыть/закрыть попап
 function targetPopup(popupName) {
@@ -131,4 +136,3 @@ editButton.addEventListener('click', function () {
 addButton.addEventListener('click', function () {
   targetPopup(popupPhoto);
 });
-

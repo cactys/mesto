@@ -56,6 +56,16 @@ const handleSubmitAddCardForm = (evt) => {
   inputPhotoSrc.value = '';
 };
 
+const handleDeleteCard = (evt) => {
+  evt.target.closest('.card').remove();
+};
+
+const handlelikeCard = (evt) => {
+  evt.target
+    .closest('.card__like-button')
+    .classList.toggle('card__like-button_active');
+}
+
 // generate card
 const generateCard = (cardData) => {
   const newCard = cardTemplate.cloneNode(true);
@@ -64,6 +74,12 @@ const generateCard = (cardData) => {
   cardImage.src = cardData.link;
   const cardTitle = newCard.querySelector('.card__name');
   cardTitle.textContent = cardData.name;
+
+  const deleteButton = newCard.querySelector('.card__trach-icon');
+  deleteButton.addEventListener('click', handleDeleteCard);
+
+  const likeButton = newCard.querySelector('.card__like-button');
+  likeButton.addEventListener('click', handlelikeCard);
 
   return newCard;
 };

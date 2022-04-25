@@ -1,7 +1,7 @@
 // DOM элеиенты
 const closeButton = document.querySelectorAll('.popup__close-button');
 const popupProfile = document.querySelector('.popup_type_profile');
-const popupPhoto = document.querySelector('.popup_type_photo');
+const popupPhoto = document.querySelector('.popup_type_add-photo');
 
 // ==== Cards ====
 // масив карточек

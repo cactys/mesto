@@ -1,7 +1,10 @@
 // DOM элеиенты
 const closeButton = document.querySelectorAll('.popup__close-button');
 const popupProfile = document.querySelector('.popup_type_profile');
-const popupPhoto = document.querySelector('.popup_type_add-photo');
+const popupAddPhoto = document.querySelector('.popup_type_add-photo');
+const popupPhoto = document.querySelector('.popup_type_photo');
+
+// ==== Photo ====
 
 // ==== Cards ====
 // масив карточек
@@ -48,7 +51,7 @@ const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src');
 const handleSubmitAddCardForm = (evt) => {
   evt.preventDefault();
 
-  targetPopup(popupPhoto);
+  targetPopup(popupAddPhoto);
 
   renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
 
@@ -64,7 +67,7 @@ const handlelikeCard = (evt) => {
   evt.target
     .closest('.card__like-button')
     .classList.toggle('card__like-button_active');
-}
+};
 
 // generate card
 const generateCard = (cardData) => {
@@ -72,6 +75,18 @@ const generateCard = (cardData) => {
 
   const cardImage = newCard.querySelector('.card__image');
   cardImage.src = cardData.link;
+
+  // открыть картинку в размере 75% дисплея
+  cardImage.addEventListener('click', function () {
+    targetPopup(popupPhoto);
+
+    const photoImage = document.querySelector('.photo-container__photo');
+    photoImage.src = cardImage.src;
+
+    const photoTitle = document.querySelector('.photo-container__photo-title');
+    photoTitle.textContent = cardTitle.textContent;
+  });
+
   const cardTitle = newCard.querySelector('.card__name');
   cardTitle.textContent = cardData.name;
 
@@ -150,5 +165,5 @@ editButton.addEventListener('click', function () {
   targetPopup(popupProfile);
 });
 addButton.addEventListener('click', function () {
-  targetPopup(popupPhoto);
+  targetPopup(popupAddPhoto);
 });

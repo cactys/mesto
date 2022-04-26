@@ -84,7 +84,7 @@ const generateCard = (cardData) => {
     const photoTitle = document.querySelector('.photo-container__photo-title');
     photoTitle.textContent = cardTitle.textContent;
     photoImage.alt = photoTitle.textContent;
-    
+
     targetPopup(popupPhoto);
   });
 

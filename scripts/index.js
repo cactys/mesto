@@ -78,14 +78,14 @@ const generateCard = (cardData) => {
 
   // открыть картинку в размере 75% дисплея
   cardImage.addEventListener('click', function () {
-    targetPopup(popupPhoto);
-
     const photoImage = document.querySelector('.photo-container__photo');
     photoImage.src = cardImage.src;
 
     const photoTitle = document.querySelector('.photo-container__photo-title');
     photoTitle.textContent = cardTitle.textContent;
     photoImage.alt = photoTitle.textContent;
+    
+    targetPopup(popupPhoto);
   });
 
   const cardTitle = newCard.querySelector('.card__name');

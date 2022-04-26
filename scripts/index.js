@@ -85,10 +85,12 @@ const generateCard = (cardData) => {
 
     const photoTitle = document.querySelector('.photo-container__photo-title');
     photoTitle.textContent = cardTitle.textContent;
+    photoImage.alt = photoTitle.textContent;
   });
 
   const cardTitle = newCard.querySelector('.card__name');
   cardTitle.textContent = cardData.name;
+  cardImage.alt = cardTitle.textContent;
 
   const deleteButton = newCard.querySelector('.card__trach-icon');
   deleteButton.addEventListener('click', handleDeleteCard);

@@ -1,10 +1,30 @@
 // DOM элеиенты
-const closeButton = document.querySelectorAll('.popup__close-button');
+const buttonsClose = document.querySelectorAll('.popup__close-button');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 const popupPhoto = document.querySelector('.popup_type_photo');
-
-// ==== Photo ====
+// находим блок для карт
+const cardsContainer = document.querySelector('.cards');
+// находим в DOM форму добавление фото
+const formPhoto = document.querySelector('.form_add-photo');
+// находим в DOM поля формы добавления фото
+const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title');
+const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src');
+// находим в DOM форму редактирования профиля
+const formProfile = document.querySelector('.form_edit-profile');
+// находим в DOM поля формы редактирования профиля
+const nameInput = formProfile.querySelector('.form__input_profile-name');
+const jobInput = formProfile.querySelector('.form__input_profile-job');
+// находим в DOM кнопку редактирования профиля
+const buttonEditProfile= document.querySelector('.profile__edit-button');
+// находим в DOM кнопку добавления фотографии
+const buttonAddPhoto = document.querySelector('.profile__add-button');
+// находим в DOM заголовок и описание профиля
+const nameProfile = document.querySelector('.profile__title');
+const jobProfile = document.querySelector('.profile__subtitle');
+// находим в DOM фотографию и подпись карточки
+const photoImage = document.querySelector('.photo-container__photo');
+const photoTitle = document.querySelector('.photo-container__photo-title');
 
 // ==== Cards ====
 // масив карточек
@@ -35,34 +55,32 @@ const initialCards = [
   },
 ];
 
+// ==== card ====
 // Шаблон
 const cardTemplate = document
   .querySelector('#card-template')
   .content.querySelector('.card');
 
-// DOM элемент
-const cardsContainer = document.querySelector('.cards');
-const formPhoto = document.querySelector('.form_add-photo');
-const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title');
-const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src');
-
-// ==== card ====
 // Обработчик событий
 const handleSubmitAddCardForm = (evt) => {
-  evt.preventDefault();
+  evt.preventDefault(); /* Эта строчка отменяет стандартную отправку формы.
+  Так мы можем определить свою логику отправки.
+  О том, как это делать, расскажем позже. */
 
-  targetPopup(popupAddPhoto);
+  closePopup(popupAddPhoto);
 
   renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
 
-  inputPhotoTitle.value = '';
-  inputPhotoSrc.value = '';
+  evt.target.reset(inputPhotoTitle);
+  evt.target.reset(inputPhotoSrc);
 };
 
+// обработка удаления карточки
 const handleDeleteCard = (evt) => {
   evt.target.closest('.card').remove();
 };
 
+// обработка кнопки "нравиться"
 const handlelikeCard = (evt) => {
   evt.target
     .closest('.card__like-button')
@@ -71,30 +89,33 @@ const handlelikeCard = (evt) => {
 
 // generate card
 const generateCard = (cardData) => {
+  // клонировать узел карт
   const newCard = cardTemplate.cloneNode(true);
 
+  // находим в DOM изображение карты
   const cardImage = newCard.querySelector('.card__image');
   cardImage.src = cardData.link;
 
   // открыть картинку в размере 75% дисплея
   cardImage.addEventListener('click', function () {
-    const photoImage = document.querySelector('.photo-container__photo');
-    photoImage.src = cardImage.src;
+    photoImage.src = cardData.link;
 
-    const photoTitle = document.querySelector('.photo-container__photo-title');
     photoTitle.textContent = cardTitle.textContent;
-    photoImage.alt = photoTitle.textContent;
+    photoImage.alt = cardData.name;
 
-    targetPopup(popupPhoto);
+    openPopup(popupPhoto);
   });
 
+  // находим в DOM описание карты
   const cardTitle = newCard.querySelector('.card__name');
   cardTitle.textContent = cardData.name;
-  cardImage.alt = cardTitle.textContent;
+  cardImage.alt = cardData.name;
 
+  // находим в DOM кнопку "удалить"
   const deleteButton = newCard.querySelector('.card__trach-icon');
   deleteButton.addEventListener('click', handleDeleteCard);
 
+  // находим в DOM кнопку "нравиться"
   const likeButton = newCard.querySelector('.card__like-button');
   likeButton.addEventListener('click', handlelikeCard);
 
@@ -106,66 +127,71 @@ const renderingCard = (cardData) => {
   cardsContainer.prepend(generateCard(cardData));
 };
 
+// ==== работа с формами profile ====
+// Обработчик «отправки» формы редактирования профиля
+const handleSubmitEditProfileForm = (evt) => {
+  evt.preventDefault(); /* Эта строчка отменяет стандартную отправку формы.
+  Так мы можем определить свою логику отправки.
+  О том, как это делать, расскажем позже. */
+
+  // получить значение полей jobInput и nameInput из свойства value
+  // втсавить новые значения с помощью textContent
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
+
+  closePopup(popupProfile);
+};
+
+// ==== обработка событий ====
+// перебрать массив с карточками
 initialCards.forEach((cardData) => {
   renderingCard(cardData);
 });
 
+// прикрепить обработчик к форме добавить фото:
+// он будет следить за событием “submit” - «сохранить»
 formPhoto.addEventListener('submit', handleSubmitAddCardForm);
 
-// ==== Forms & popups ====
-// DOM элементы forms & popups
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
-const nameProfile = document.querySelector('.profile__title');
-const jobProfile = document.querySelector('.profile__subtitle');
-
-// ==== работа с формами profile ====
-// Находим форму в DOM
-const formProfile = document.querySelector('.form_edit-profile');
-// Находим поля формы в DOM
-const nameInput = formProfile.querySelector('.form__input_profile-name');
-const jobInput = formProfile.querySelector('.form__input_profile-job');
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function handleSubmitEditProfileForm(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Так мы можем определить свою логику отправки.
-  // О том, как это делать, расскажем позже.
-  targetPopup(popupProfile);
-
-  // Получите значение полей jobInput и nameInput из свойства value
-  // Вставьте новые значения с помощью textContent
-  nameProfile.textContent = nameInput.value;
-  jobProfile.textContent = jobInput.value;
-}
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
+// прикрепить обработчик к форме редактировать профиль:
+// он будет следить за событием “submit” - «сохранить»
 formProfile.addEventListener('submit', handleSubmitEditProfileForm);
 
-// ==== pop-up's ====
-// функция открыть/закрыть попап
-function targetPopup(popupName) {
-  if (!popupName.classList.contains('popup_opened')) {
-    nameInput.value = nameProfile.textContent;
-    jobInput.value = jobProfile.textContent;
-  }
-  popupName.classList.toggle('popup_opened');
-}
+// ==== POPUP ====
+// открыть popup
+const openPopup = (popupName) => {
+  popupName.classList.add('popup_opened');
+};
+
+// открыть popup редактировать профиль
+const openPropfilePopup = (popupName) => {
+  popupName.classList.add('popup_opened');
+
+  // получить значение полей nameProfile и jobProfile из свойства textContent
+  // втсавить новые значения с помощью value
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+};
+
+// заркрыть popup
+const closePopup = (popupName) => {
+  popupName.classList.remove('popup_opened');
+};
 
 // ==== кнопки ====
-// закрыть попапы
-closeButton.forEach(function (arrElement) {
+// закрыть popup
+buttonsClose.forEach(function (arrElement) {
   arrElement.addEventListener('click', function () {
-    targetPopup(this.closest('.popup'));
+    closePopup(this.closest('.popup'));
   });
 });
 
-// открыть попапы
-editButton.addEventListener('click', function () {
-  targetPopup(popupProfile);
+// открыть popup
+// popup редактировать профиль
+buttonEditProfile.addEventListener('click', function () {
+  openPropfilePopup(popupProfile);
 });
-addButton.addEventListener('click', function () {
-  targetPopup(popupAddPhoto);
+
+// popu добавить фотографию
+buttonAddPhoto.addEventListener('click', function () {
+  openPopup(popupAddPhoto);
 });

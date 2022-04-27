@@ -1,5 +1,3 @@
-@media screen and (max-width: 425px) {
-  .popup_type_photo {
-    background-color: #000;
-  }
+.popup_type_photo {
+  background-color: rgba(0, 0, 0, 0.9);
 }

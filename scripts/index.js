@@ -149,7 +149,7 @@ initialCards.forEach((cardData) => {
 });
 
 // прикрепить обработчик к форме добавить фото:
-// он будет следить за событием “submit” - «сохранить»
+// он будет следить за событием “submit” - «создать»
 formPhoto.addEventListener('submit', handleSubmitAddCardForm);
 
 // прикрепить обработчик к форме редактировать профиль:

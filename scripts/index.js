@@ -169,7 +169,7 @@ const openPropfilePopup = () => {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 
-  openPopup(popupPhoto);
+  openPopup(popupProfile);
 };
 
 // заркрыть popup

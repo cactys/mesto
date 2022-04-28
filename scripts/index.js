@@ -16,7 +16,7 @@ const formProfile = document.querySelector('.form_edit-profile');
 const nameInput = formProfile.querySelector('.form__input_profile-name');
 const jobInput = formProfile.querySelector('.form__input_profile-job');
 // находим в DOM кнопку редактирования профиля
-const buttonEditProfile= document.querySelector('.profile__edit-button');
+const buttonEditProfile = document.querySelector('.profile__edit-button');
 // находим в DOM кнопку добавления фотографии
 const buttonAddPhoto = document.querySelector('.profile__add-button');
 // находим в DOM заголовок и описание профиля
@@ -163,13 +163,13 @@ const openPopup = (popupName) => {
 };
 
 // открыть popup редактировать профиль
-const openPropfilePopup = (popupName) => {
-  popupName.classList.add('popup_opened');
-
+const openPropfilePopup = () => {
   // получить значение полей nameProfile и jobProfile из свойства textContent
   // втсавить новые значения с помощью value
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
+
+  openPopup(popupPhoto);
 };
 
 // заркрыть popup
@@ -188,7 +188,7 @@ buttonsClose.forEach(function (arrElement) {
 // открыть popup
 // popup редактировать профиль
 buttonEditProfile.addEventListener('click', function () {
-  openPropfilePopup(popupProfile);
+  openPropfilePopup();
 });
 
 // popu добавить фотографию

@@ -5,16 +5,6 @@ const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 const popupPhoto = document.querySelector('.popup_type_photo');
 // *находим блок для карт
 const cardsContainer = document.querySelector('.cards');
-// *находим в DOM форму добавление фото
-const formPhoto = document.querySelector('.form_add-photo');
-// *находим в DOM поля формы добавления фото
-const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title');
-const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src');
-// *находим в DOM форму редактирования профиля
-const formProfile = document.querySelector('.form_edit-profile');
-// *находим в DOM поля формы редактирования профиля
-const nameInput = formProfile.querySelector('.form__input_profile-name');
-const jobInput = formProfile.querySelector('.form__input_profile-job');
 // *находим в DOM кнопку редактирования профиля
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // *находим в DOM кнопку добавления фотографии
@@ -25,6 +15,17 @@ const jobProfile = document.querySelector('.profile__subtitle');
 // *находим в DOM фотографию и подпись карточки
 const photoImage = document.querySelector('.photo-container__photo');
 const photoTitle = document.querySelector('.photo-container__photo-title');
+// *объявить form || input
+// ?форма редактирование профиля
+const formProfile = document.forms.profile; // форма редактирования профиля
+const nameInput = formProfile.elements.title; // поле ввода имени
+const jobInput = formProfile.elements.job; // поле ввода деятельности
+const buttonSubmitProfile = formProfile.elements.submit // кнопка отправки формы
+// ?форма добавление карточки
+const formPhoto = document.forms.add; // форма добавления карточки
+const inputPhotoTitle = formPhoto.elements.title; // поле ввода названия
+const inputPhotoSrc = formPhoto.elements.src; // поле ввода ссылки на фотографию
+const buttonSubmitPhoto = formPhoto.elements.submit; // кнопка отправки формы
 
 // *==== Cards ====
 // ?масив карточек
@@ -72,6 +73,8 @@ const handleSubmitAddCardForm = (evt) => {
 
   evt.target.reset(inputPhotoTitle);
   evt.target.reset(inputPhotoSrc);
+
+  setSubmitPhoto(false);
 };
 
 // ?обработка кнопки "delete". Удаление карточки
@@ -165,8 +168,28 @@ const closePopup = (popupName) => {
 function heandleClosePopup(evt) {
   const openedPopup = document.querySelector('.popup_opened');
 
-  if (openedPopup && evt.key === 'Escape' || evt.target === openedPopup) {
+  if ((openedPopup && evt.key === 'Escape') || evt.target === openedPopup) {
     closePopup(openedPopup);
+  }
+}
+
+function setSubmitPhoto(isFormValid) {
+  if (isFormValid) {
+    buttonSubmitPhoto.removeAttribute('disabled');
+    buttonSubmitPhoto.classList.remove('form__submit_disabled');
+  } else {
+    buttonSubmitPhoto.setAttribute('disabled', true);
+    buttonSubmitPhoto.classList.add('form__submit_disabled');
+  }
+}
+
+function setSubmitProfile(isFormValid) {
+  if (isFormValid) {
+    buttonSubmitProfile.removeAttribute('disabled');
+    buttonSubmitProfile.classList.remove('form__submit_disabled');
+  } else {
+    buttonSubmitProfile.setAttribute('disabled', true);
+    buttonSubmitProfile.classList.add('form__submit_disabled');
   }
 }
 
@@ -179,10 +202,19 @@ initialCards.forEach((cardData) => {
 // ?прикрепить обработчик к форме добавить фото:
 // ?он будет следить за событием “submit” - «создать»
 formPhoto.addEventListener('submit', handleSubmitAddCardForm);
+formPhoto.addEventListener('input', function () {
+  const isValid =
+    inputPhotoTitle.value.length > 0 && inputPhotoSrc.value.length > 0;
+  setSubmitPhoto(isValid);
+});
 
 // ?прикрепить обработчик к форме редактировать профиль:
 // ?он будет следить за событием “submit” - «сохранить»
 formProfile.addEventListener('submit', handleSubmitEditProfileForm);
+formProfile.addEventListener('input', function () {
+  const isValid = nameInput.value.length > 0 && jobInput.value.length > 0;
+  setSubmitProfile(isValid);
+});
 
 // *==== кнопки ====
 // ?закрыть popup

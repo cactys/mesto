@@ -46,8 +46,8 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" name="title"
             minlength="2" maxlength="40" />
-          <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job"
-            name="job" minlength="2" maxlength="200" />
+          <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job" name="job"
+            minlength="2" maxlength="200" />
           <button name="submit" type="submit" class="form__submit">Сохранить</button>
         </form>
       </div>
@@ -58,10 +58,16 @@
         <button class="popup__close-button" type="button">Закрыть</button>
         <form name="add" class="form form_add-photo">
           <h2 class="form__title">Новое место</h2>
-          <input type="text" placeholder="Название" class="form__input form__input_photo-title" name="title"
-            required="" minlength="2" maxlength="40" />
-          <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" name="src"
-            required="" />
+          <div class="form__field">
+            <input type="text" placeholder="Название" class="form__input form__input_photo-title" name="title" required
+              minlength="2" maxlength="40" />
+            <span class="form__input-error">Вы пропустили это поле.</span>
+          </div>
+          <div class="form__field">
+            <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" name="src"
+              required />
+            <span class="form__input-error">Введите адрес сайта.</span>
+          </div>
           <button name="submit" type="submit" class="form__submit form__submit_disabled" disabled>Сохранить</button>
         </form>
       </div>

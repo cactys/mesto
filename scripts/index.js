@@ -21,12 +21,11 @@ const formProfile = document.querySelector('.form_edit-profile'); // форма 
 const nameInput = formProfile.querySelector('.form__input_profile-name'); // поле ввода имени
 const jobInput = formProfile.querySelector('.form__input_profile-job'); // поле ввода деятельности
 const buttonSubmitProfile = formProfile.querySelector('.form__submit'); // кнопка отправки формы
-// ?форма добавление карточки
+// // ?форма добавление карточки
 const formPhoto = document.querySelector('.form_add-photo'); // форма добавления карточки
 const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title'); // поле ввода названия
 const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // поле ввода ссылки на фотографию
 const buttonSubmitPhoto = formPhoto.querySelector('.form__submit'); // кнопка отправки формы
-const messageErrorPhoto = formPhoto.querySelector('.form__input-error'); // сообщение об ошибки
 
 // *==== Cards ====
 // ?масив карточек
@@ -68,12 +67,12 @@ const handleSubmitAddCardForm = (evt) => {
   // !Эта строчка отменяет стандартную отправку формы.
   evt.preventDefault();
 
-  closePopup(popupAddPhoto);
-
   renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
 
   evt.target.reset(inputPhotoTitle);
   evt.target.reset(inputPhotoSrc);
+
+  closePopup(popupAddPhoto);
 };
 
 // ?обработка кнопки "delete". Удаление карточки
@@ -180,11 +179,11 @@ initialCards.forEach((cardData) => {
 
 // ?прикрепить обработчик к форме добавить фото:
 // ?он будет следить за событием “submit” - «создать»
-formPhoto.addEventListener('submit', handleSubmitAddCardForm);
+// formPhoto.addEventListener('submit', handleSubmitAddCardForm);
 
 // ?прикрепить обработчик к форме редактировать профиль:
 // ?он будет следить за событием “submit” - «сохранить»
-formProfile.addEventListener('submit', handleSubmitEditProfileForm);
+// formProfile.addEventListener('submit', handleSubmitEditProfileForm);
 
 // *==== кнопки ====
 // ?закрыть popup

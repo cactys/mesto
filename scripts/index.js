@@ -21,7 +21,7 @@ const formProfile = document.querySelector('.form_edit-profile'); // форма 
 const nameInput = formProfile.querySelector('.form__input_profile-name'); // поле ввода имени
 const jobInput = formProfile.querySelector('.form__input_profile-job'); // поле ввода деятельности
 const buttonSubmitProfile = formProfile.querySelector('.form__submit'); // кнопка отправки формы
-// // ?форма добавление карточки
+// ?форма добавление карточки
 const formPhoto = document.querySelector('.form_add-photo'); // форма добавления карточки
 const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title'); // поле ввода названия
 const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // поле ввода ссылки на фотографию
@@ -162,14 +162,14 @@ const closePopup = (popupName) => {
   popupName.classList.remove('popup_opened');
 };
 
-// *==== FUNCTION ====
-function heandleClosePopup(evt) {
+// ?закрыть popup по нажатию Escape или оверлей мыши
+const heandleClosePopup = (evt) => {
   const openedPopup = document.querySelector('.popup_opened');
 
   if ((openedPopup && evt.key === 'Escape') || evt.target === openedPopup) {
     closePopup(openedPopup);
   }
-}
+};
 
 // *==== обработка событий ====
 // ?перебрать массив с карточками
@@ -179,11 +179,15 @@ initialCards.forEach((cardData) => {
 
 // ?прикрепить обработчик к форме добавить фото:
 // ?он будет следить за событием “submit” - «создать»
-// formPhoto.addEventListener('submit', handleSubmitAddCardForm);
+formPhoto.addEventListener('submit', handleSubmitAddCardForm);
 
 // ?прикрепить обработчик к форме редактировать профиль:
 // ?он будет следить за событием “submit” - «сохранить»
-// formProfile.addEventListener('submit', handleSubmitEditProfileForm);
+formProfile.addEventListener('submit', handleSubmitEditProfileForm);
+formProfile.addEventListener('input', (evt) => {
+  const validationMessage = document.querySelector('.form__input-error');
+  console.log(evt.validationMessage);
+});
 
 // *==== кнопки ====
 // ?закрыть popup

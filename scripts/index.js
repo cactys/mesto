@@ -184,10 +184,6 @@ formPhoto.addEventListener('submit', handleSubmitAddCardForm);
 // ?прикрепить обработчик к форме редактировать профиль:
 // ?он будет следить за событием “submit” - «сохранить»
 formProfile.addEventListener('submit', handleSubmitEditProfileForm);
-formProfile.addEventListener('input', (evt) => {
-  const validationMessage = document.querySelector('.form__input-error');
-  console.log(evt.validationMessage);
-});
 
 // *==== кнопки ====
 // ?закрыть popup

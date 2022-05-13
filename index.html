@@ -46,14 +46,14 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__set">
             <label class="form__field">
-              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" name="title"
+              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" id="name-input" name="title"
                 minlength="2" maxlength="40" />
-              <span class="form__input-error"></span>
+              <span class="form__input-error name-input-error"></span>
             </label>
             <label class="form__field">
-              <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job" name="job"
+              <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job" id="job-input" name="job"
                 minlength="2" maxlength="200" />
-              <span class="form__input-error"></span>
+              <span class="form__input-error job-input-error"></span>
             </label>
             <button type="submit" class="form__submit">Сохранить</button>
           </fieldset>
@@ -68,14 +68,14 @@
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__set">
             <label class="form__field">
-              <input type="text" placeholder="Название" class="form__input form__input_photo-title" name="title"
+              <input type="text" placeholder="Название" class="form__input form__input_photo-title" id="title-input" name="title"
                 required minlength="2" maxlength="40" />
-              <span class="form__input-error"></span>
+              <span class="form__input-error title-input-error"></span>
             </label>
             <label class="form__field">
-              <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" name="src"
+              <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" id="src-input" name="src"
                 required />
-              <span class="form__input-error"></span>
+              <span class="form__input-error src-input-error"></span>
             </label>
             <button type="submit" class="form__submit">Создать</button>
           </fieldset>

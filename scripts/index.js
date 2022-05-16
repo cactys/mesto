@@ -122,7 +122,7 @@ const generateCard = (cardData) => {
   return newCard;
 };
 
-// rendering card
+// ?rendering card
 const renderingCard = (cardData) => {
   cardsContainer.prepend(generateCard(cardData));
 };

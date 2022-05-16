@@ -5,6 +5,19 @@ const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 const popupPhoto = document.querySelector('.popup_type_photo');
 // *находим блок для карт
 const cardsContainer = document.querySelector('.cards');
+<<<<<<< HEAD
+=======
+// *находим в DOM форму добавление фото
+const formPhoto = document.querySelector('.form_add-photo');
+// *находим в DOM поля формы добавления фото
+const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title');
+const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src');
+// *находим в DOM форму редактирования профиля
+const formProfile = document.querySelector('.form_edit-profile');
+// *находим в DOM поля формы редактирования профиля
+const nameInput = formProfile.querySelector('.form__input_profile-name');
+const jobInput = formProfile.querySelector('.form__input_profile-job');
+>>>>>>> 8a502f7a25ace057f87555fb46893cbfebdfcac5
 // *находим в DOM кнопку редактирования профиля
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // *находим в DOM кнопку добавления фотографии
@@ -66,6 +79,11 @@ const cardTemplate = document
 const handleSubmitAddCardForm = (evt) => {
   // !Эта строчка отменяет стандартную отправку формы.
   evt.preventDefault();
+<<<<<<< HEAD
+=======
+
+  closePopup(popupAddPhoto);
+>>>>>>> 8a502f7a25ace057f87555fb46893cbfebdfcac5
 
   renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
 
@@ -178,6 +196,7 @@ const closePopup = (popupName) => {
   popupName.classList.remove('popup_opened');
 };
 
+<<<<<<< HEAD
 // ?закрыть popup по нажатию Escape или оверлей мыши
 const heandleClosePopup = (evt) => {
   const openedPopup = document.querySelector('.popup_opened');
@@ -186,6 +205,16 @@ const heandleClosePopup = (evt) => {
     closePopup(openedPopup);
   }
 };
+=======
+// *==== FUNCTION ====
+function heandleClosePopup(evt) {
+  const openedPopup = document.querySelector('.popup_opened');
+
+  if (openedPopup && evt.key === 'Escape' || evt.target === openedPopup) {
+    closePopup(openedPopup);
+  }
+}
+>>>>>>> 8a502f7a25ace057f87555fb46893cbfebdfcac5
 
 // *==== обработка событий ====
 // ?перебрать массив с карточками

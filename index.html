@@ -42,13 +42,21 @@
     <div class="popup popup_type_profile">
       <div class="popup__container">
         <button class="popup__close-button" type="button">Закрыть</button>
-        <form class="form form_edit-profile">
+        <form class="form form_edit-profile" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" name="profile-name"
-            minlength="2" maxlength="40" />
-          <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job"
-            name="profile-job" minlength="2" maxlength="200" />
-          <button type="submit" class="form__submit">Сохранить</button>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" id="name-input" name="name"
+                minlength="2" maxlength="40" required />
+              <span class="form__input-error name-input-error"></span>
+            </label>
+            <label class="form__field">
+              <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job" id="job-input" name="job"
+                minlength="2" maxlength="200" required />
+              <span class="form__input-error job-input-error"></span>
+            </label>
+            <button type="submit" class="form__submit">Сохранить</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -56,13 +64,21 @@
     <div class="popup popup_type_add-photo">
       <div class="popup__container">
         <button class="popup__close-button" type="button">Закрыть</button>
-        <form class="form form_add-photo">
+        <form class="form form_add-photo" novalidate>
           <h2 class="form__title">Новое место</h2>
-          <input type="text" placeholder="Название" class="form__input form__input_photo-title" name="photo-title"
-            required="" minlength="2" maxlength="40" />
-          <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" name="photo-src"
-            required="" />
-          <button type="submit" class="form__submit">Создать</button>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input type="text" placeholder="Название" class="form__input form__input_photo-title" id="title-input" name="title"
+                required minlength="2" maxlength="40" />
+              <span class="form__input-error title-input-error"></span>
+            </label>
+            <label class="form__field">
+              <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" id="src-input" name="src"
+                required />
+              <span class="form__input-error src-input-error"></span>
+            </label>
+            <button type="submit" class="form__submit">Создать</button>
+          </fieldset>
         </form>
       </div>
     </div>
@@ -82,6 +98,7 @@
     </footer>
   </div>
 
+  <script src="./scripts/validate.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 
   <template id="card-template">

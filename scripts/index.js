@@ -20,12 +20,10 @@ const photoTitle = document.querySelector('.photo-container__photo-title');
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
 const nameInput = formProfile.querySelector('.form__input_profile-name'); // поле ввода имени
 const jobInput = formProfile.querySelector('.form__input_profile-job'); // поле ввода деятельности
-const buttonSubmitProfile = formProfile.querySelector('.form__submit'); // кнопка отправки формы
 // ?форма добавление карточки
 const formPhoto = document.querySelector('.form_add-photo'); // форма добавления карточки
 const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title'); // поле ввода названия
 const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // поле ввода ссылки на фотографию
-const buttonSubmitPhoto = formPhoto.querySelector('.form__submit'); // кнопка отправки формы
 
 // *==== Cards ====
 // ?масив карточек

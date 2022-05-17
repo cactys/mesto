@@ -67,7 +67,7 @@ const handleSubmitAddCardForm = (evt) => {
 
   renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
 
-  evt.target.reset(inputPhotoTitle, inputPhotoSrc);
+  evt.target.reset();
 
   const buttonElement = formPhoto.querySelector('.form__submit');
   disableSubmitButton(buttonElement, validationConfig.inactiveButtonClass);
@@ -82,7 +82,6 @@ const generateCard = (cardData) => {
 
   // ?находим в DOM изображение карты
   const cardImage = newCard.querySelector('.card__image');
-  cardImage.src = cardData.link;
 
   // ?открыть картинку в размере 75% дисплея
   cardImage.addEventListener('click', function () {
@@ -98,6 +97,7 @@ const generateCard = (cardData) => {
   const cardTitle = newCard.querySelector('.card__name');
   cardTitle.textContent = cardData.name;
   cardImage.alt = cardData.name;
+  cardImage.src = cardData.link;
 
   // ?событие кнопки "delete"
   const deleteCard = newCard.querySelector('.card__trach-icon');
@@ -146,18 +146,18 @@ function openPropfilePopup() {
 
 // ?открыть popup
 function openPopup(popupName) {
-  document.addEventListener('keydown', heandleClosePopup);
+  document.addEventListener('keydown', handleEscageKey);
   popupName.classList.add('popup_opened');
 }
 
 // ?заркрыть popup
 function closePopup(popupName) {
-  document.removeEventListener('keydown', heandleClosePopup);
+  document.removeEventListener('keydown', handleEscageKey);
   popupName.classList.remove('popup_opened');
 }
 
 // ?закрыть popup по нажатию Escape или оверлей мыши
-function heandleClosePopup(evt) {
+function handleEscageKey(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);

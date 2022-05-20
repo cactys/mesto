@@ -106,34 +106,34 @@ const handleSubmitEditProfileForm = (evt) => {
 
 // *==== POPUP ====
 // ?открыть popup редактировать профиль
-function openPropfilePopup() {
+const openPropfilePopup = () => {
   // ?получить значение полей nameProfile и jobProfile из свойства textContent
   // ?втсавить новые значения с помощью value
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 
   openPopup(popupProfile);
-}
+};
 
 // ?открыть popup
-function openPopup(popupName) {
+const openPopup = (popupName) => {
   document.addEventListener('keydown', handleEscageKey);
   popupName.classList.add('popup_opened');
-}
+};
 
 // ?заркрыть popup
-function closePopup(popupName) {
+const closePopup = (popupName) => {
   document.removeEventListener('keydown', handleEscageKey);
   popupName.classList.remove('popup_opened');
-}
+};
 
 // ?закрыть popup по нажатию Escape или оверлей мыши
-function handleEscageKey(evt) {
+const handleEscageKey = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
-}
+};
 
 // *==== обработка событий ====
 // ?перебрать массив с карточками

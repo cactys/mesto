@@ -28,7 +28,7 @@ const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // по
 // *==== card ====
 // ?Шаблон
 const cardTemplate = document
-  .querySelector('#card-template')
+  .querySelector('.card-template')
   .content.querySelector('.card');
 
 // ?Обработчик событий

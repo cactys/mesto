@@ -34,7 +34,7 @@
 
       <div class="grid">
         <ul class="cards">
-
+          <!-- контейнер для добавления карточек -->
         </ul>
       </div>
     </main>
@@ -46,13 +46,13 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__set">
             <label class="form__field">
-              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" id="name-input" name="name"
-                minlength="2" maxlength="40" required />
+              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" id="name-input"
+                name="name" minlength="2" maxlength="40" required />
               <span class="form__input-error name-input-error"></span>
             </label>
             <label class="form__field">
-              <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job" id="job-input" name="job"
-                minlength="2" maxlength="200" required />
+              <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job"
+                id="job-input" name="job" minlength="2" maxlength="200" required />
               <span class="form__input-error job-input-error"></span>
             </label>
             <button type="submit" class="form__submit">Сохранить</button>
@@ -68,13 +68,13 @@
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__set">
             <label class="form__field">
-              <input type="text" placeholder="Название" class="form__input form__input_photo-title" id="title-input" name="title"
-                required minlength="2" maxlength="40" />
+              <input type="text" placeholder="Название" class="form__input form__input_photo-title" id="title-input"
+                name="title" required minlength="2" maxlength="40" />
               <span class="form__input-error title-input-error"></span>
             </label>
             <label class="form__field">
-              <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src" id="src-input" name="src"
-                required />
+              <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src"
+                id="src-input" name="src" required />
               <span class="form__input-error src-input-error"></span>
             </label>
             <button type="submit" class="form__submit">Создать</button>
@@ -98,9 +98,7 @@
     </footer>
   </div>
 
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/index.js" defer></script>
+  <script type="module" src="./scripts/index.js" defer></script>
 
   <template class="card-template">
     <li class="card">

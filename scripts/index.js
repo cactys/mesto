@@ -1,3 +1,5 @@
+import { initialCards } from '../scripts/Cards.js';
+
 // !DOM элеиенты
 const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
@@ -25,12 +27,6 @@ const formPhoto = document.querySelector('.form_add-photo'); // форма до�
 const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title'); // поле ввода названия
 const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // поле ввода ссылки на фотографию
 
-// *==== card ====
-// ?Шаблон
-const cardTemplate = document
-  .querySelector('.card-template')
-  .content.querySelector('.card');
-
 // ?Обработчик событий
 const handleSubmitAddCardForm = (evt) => {
   // !Эта строчка отменяет стандартную отправку формы.
@@ -49,7 +45,10 @@ const handleSubmitAddCardForm = (evt) => {
 // ?generate card
 const generateCard = (cardData) => {
   // ?клонировать узел карт
-  const newCard = cardTemplate.cloneNode(true);
+  const newCard = document
+    .querySelector('.card-template')
+    .content.querySelector('.card')
+    .cloneNode(true);
 
   // ?находим в DOM изображение карты
   const cardImage = newCard.querySelector('.card__image');
@@ -89,6 +88,8 @@ const generateCard = (cardData) => {
 const renderingCard = (cardData) => {
   cardsContainer.prepend(generateCard(cardData));
 };
+
+
 
 // *==== работа с формами profile ====
 // ?Обработчик «отправки» формы редактирования профиля
@@ -137,9 +138,9 @@ const handleEscageKey = (evt) => {
 
 // *==== обработка событий ====
 // ?перебрать массив с карточками
-initialCards.forEach((cardData) => {
-  renderingCard(cardData);
-});
+// initialCards.forEach((cardData) => {
+//   renderingCard(cardData);
+// });
 
 // ?прикрепить обработчик к форме добавить фото:
 // ?он будет следить за событием “submit” - «создать»
@@ -172,3 +173,5 @@ buttonEditProfile.addEventListener('click', function () {
 buttonAddPhoto.addEventListener('click', function () {
   openPopup(popupAddPhoto);
 });
+
+// renderElements(initialCards);

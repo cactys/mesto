@@ -4,7 +4,7 @@ import { initialCards } from '../scripts/Cards.js';
 const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupAddPhoto = document.querySelector('.popup_type_add-photo');
-const popupPhoto = document.querySelector('.popup_type_photo');
+// const popupPhoto = document.querySelector('.popup_type_photo');
 // *находим блок для карт
 const cardsContainer = document.querySelector('.cards');
 // *находим в DOM кнопку редактирования профиля
@@ -15,8 +15,8 @@ const buttonAddPhoto = document.querySelector('.profile__add-button');
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
 // *находим в DOM фотографию и подпись карточки
-const photoImage = document.querySelector('.photo-container__photo');
-const photoTitle = document.querySelector('.photo-container__photo-title');
+// const photoImage = document.querySelector('.photo-container__photo');
+// const photoTitle = document.querySelector('.photo-container__photo-title');
 // *объявить form || input
 // ?форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
@@ -43,53 +43,51 @@ const handleSubmitAddCardForm = (evt) => {
 };
 
 // ?generate card
-const generateCard = (cardData) => {
+// const generateCard = (cardData) => {
   // ?клонировать узел карт
-  const newCard = document
-    .querySelector('.card-template')
-    .content.querySelector('.card')
-    .cloneNode(true);
+  // const newCard = document
+  //   .querySelector('.card-template')
+  //   .content.querySelector('.card')
+  //   .cloneNode(true);
 
   // ?находим в DOM изображение карты
-  const cardImage = newCard.querySelector('.card__image');
+  // const cardImage = newCard.querySelector('.card__image');
 
   // ?открыть картинку в размере 75% дисплея
-  cardImage.addEventListener('click', function () {
-    photoImage.src = cardData.link;
+  // cardImage.addEventListener('click', function () {
+  //   photoImage.src = cardData.link;
 
-    photoTitle.textContent = cardTitle.textContent;
-    photoImage.alt = cardData.name;
+  //   photoTitle.textContent = cardTitle.textContent;
+  //   photoImage.alt = cardData.name;
 
-    openPopup(popupPhoto);
-  });
+  //   openPopup(popupPhoto);
+  // });
 
   // ?находим в DOM описание карты
-  const cardTitle = newCard.querySelector('.card__name');
-  cardTitle.textContent = cardData.name;
-  cardImage.alt = cardData.name;
-  cardImage.src = cardData.link;
+  // const cardTitle = newCard.querySelector('.card__name');
+  // cardTitle.textContent = cardData.name;
+  // cardImage.alt = cardData.name;
+  // cardImage.src = cardData.link;
 
   // ?событие кнопки "delete"
-  const deleteCard = newCard.querySelector('.card__trach-icon');
-  deleteCard.addEventListener('click', (evt) => {
-    evt.target.closest('.card').remove();
-  });
+  // const deleteCard = newCard.querySelector('.card__trach-icon');
+  // deleteCard.addEventListener('click', (evt) => {
+  //   evt.target.closest('.card').remove();
+  // });
 
   // ?событие кнопки "like"
-  const likeCard = newCard.querySelector('.card__like-button');
-  likeCard.addEventListener('click', () => {
-    likeCard.classList.toggle('card__like-button_active');
-  });
+//   const likeCard = newCard.querySelector('.card__like-button');
+//   likeCard.addEventListener('click', () => {
+//     likeCard.classList.toggle('card__like-button_active');
+//   });
 
-  return newCard;
-};
+//   return newCard;
+// };
 
 // ?rendering card
-const renderingCard = (cardData) => {
-  cardsContainer.prepend(generateCard(cardData));
-};
-
-
+// const renderingCard = (cardData) => {
+//   cardsContainer.prepend(generateCard(cardData));
+// };
 
 // *==== работа с формами profile ====
 // ?Обработчик «отправки» формы редактирования профиля

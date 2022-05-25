@@ -19,6 +19,9 @@ export class FormValidator {
     this._buttonElement = this._formElement.querySelector(
       this._submitButtonSelector
     );
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(this._inputSelector)
+    );
   }
 
   // показать ошибку
@@ -62,7 +65,7 @@ export class FormValidator {
   // установтиь слушателя событий
   _setEventListeners = () => {
     // состояние кнопки
-    this._toggleButtonState();
+    this.toggleButtonState();
 
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -71,7 +74,7 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   };
@@ -86,35 +89,17 @@ export class FormValidator {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
     }
   };
+
+  // включить валидацию форм
+  enableValidation = () => {
+    this._setEventListeners();
+  };
+
+  // обнулить ошибки
+  resetError = () => {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+    this.toggleButtonState();
+  };
 }
-
-// включить валидацию форм
-const enableValidation = (validationConfig) => {
-  const formList = Array.from(
-    document.querySelectorAll(validationConfig.formSelector)
-  );
-  formList.forEach((formElement) => {
-    setEventListeners(
-      formElement,
-      validationConfig.inputSelector,
-      validationConfig.submitButtonSelector,
-      validationConfig.inactiveButtonClass,
-      validationConfig.inputErrorClass,
-      validationConfig.errorClass
-    );
-  });
-};
-
-// кнопка включена
-const enableSubmitButton = (buttonElement, inactiveButtonClass) => {
-  buttonElement.classList.remove(inactiveButtonClass);
-  buttonElement.removeAttribute('disabled');
-};
-
-// кнопка выключена
-const disableSubmitButton = (buttonElement, inactiveButtonClass) => {
-  buttonElement.classList.add(inactiveButtonClass);
-  buttonElement.setAttribute('disabled', true);
-};
-
-enableValidation(validationConfig);

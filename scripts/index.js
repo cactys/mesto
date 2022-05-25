@@ -15,9 +15,12 @@ const buttonAddPhoto = document.querySelector('.profile__add-button');
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
 // *Находим в DOM элементы карточки
+const cardGrid = document.querySelector('.cards');
 export const popupElement = document.querySelector('.popup_type_photo');
 export const photoImage = document.querySelector('.photo-container__photo');
-export const photoTitle = document.querySelector('.photo-container__photo-title');
+export const photoTitle = document.querySelector(
+  '.photo-container__photo-title'
+);
 // *объявить form || input
 // ?форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
@@ -28,28 +31,33 @@ const formPhoto = document.querySelector('.form_add-photo'); // форма до�
 const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title'); // поле ввода названия
 const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // поле ввода ссылки на фотографию
 
-// ?Обработчик событий
+// ?валидация
+const validateFormProfile = new FormValidator(validationConfig, formProfile);
+validateFormProfile.enableValidation();
+const validateFormCard = new FormValidator(validationConfig, formPhoto);
+validateFormCard.enableValidation();
+
+const renderCard = (initialCard) => {
+  const card = new Card(initialCard, '.card-template');
+  const cardElement = card.generateCard();
+  return cardElement;
+};
+
+// ?добавление пользовательской карточки
 const handleSubmitAddCardForm = (evt) => {
   // !Эта строчка отменяет стандартную отправку формы.
   evt.preventDefault();
-
-  renderingCard({ name: inputPhotoTitle.value, link: inputPhotoSrc.value });
-
+  // взять значения форм и создать карточку
+  const addCard = { name: inputPhotoTitle.value, link: inputPhotoSrc.value };
+  const cardElement = renderCard(addCard);
+  cardGrid.prepend(cardElement);
+  // сбросить поля ввода
   evt.target.reset();
-
-  const buttonElement = formPhoto.querySelector('.form__submit');
-  disableSubmitButton(buttonElement, validationConfig.inactiveButtonClass);
-
+  // закрыть карту по нажатию "Создать"
   closePopup(popupAddPhoto);
+  // деактивировать кнопку "Создать"
+  validateFormCard.resetError();
 };
-
-// ?генерация карточек
-initialCards.forEach((initialCard) => {
-  const card = new Card(initialCard, '.card-template');
-  const cardElement = card.generateCard();
-
-  document.querySelector('.cards').append(cardElement);
-});
 
 // *==== работа с формами profile ====
 // ?Обработчик «отправки» формы редактирования профиля
@@ -72,7 +80,7 @@ const openPropfilePopup = () => {
   // ?втсавить новые значения с помощью value
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-
+  validateFormProfile.toggleButtonState();
   openPopup(popupProfile);
 };
 
@@ -83,13 +91,13 @@ export const openPopup = (popupName) => {
 };
 
 // ?заркрыть popup
-export const closePopup = (popupName) => {
+const closePopup = (popupName) => {
   document.removeEventListener('keydown', handleEscageKey);
   popupName.classList.remove('popup_opened');
 };
 
 // ?закрыть popup по нажатию Escape или оверлей мыши
-export const handleEscageKey = (evt) => {
+const handleEscageKey = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -97,6 +105,12 @@ export const handleEscageKey = (evt) => {
 };
 
 // *==== обработка событий ====
+// ?генерация карточек
+initialCards.forEach((data) => {
+  const cardElement = renderCard(data);
+  cardGrid.append(cardElement);
+});
+
 // ?прикрепить обработчик к форме добавить фото:
 // ?он будет следить за событием “submit” - «создать»
 formPhoto.addEventListener('submit', handleSubmitAddCardForm);

@@ -28,14 +28,17 @@ export class Card {
   }
 
   _handleDeleteCard = () => {
+    // удалить карточку
     this._element.remove();
   };
 
   _handleLikeCard(evt) {
+    // лайкнуть карточку
     evt.target.classList.toggle('card__like-button_active');
   }
 
   _handleOpenPopup = () => {
+    // открыть фотографию карточки
     photoImage.src = this._image;
     photoImage.alt = this._title;
     photoTitle.textContent = this._title;
@@ -45,12 +48,12 @@ export class Card {
   _setEventListeners() {
     this._element
       .querySelector('.card__image')
-      .addEventListener('click', this._handleOpenPopup);
+      .addEventListener('click', this._handleOpenPopup); // открыть фотографию карточки
     this._element
       .querySelector('.card__trach-icon')
-      .addEventListener('click', this._handleDeleteCard);
+      .addEventListener('click', this._handleDeleteCard); // удалить карточку
     this._element
       .querySelector('.card__like-button')
-      .addEventListener('click', this._handleLikeCard);
+      .addEventListener('click', this._handleLikeCard); // лайкнуть карточку
   }
 }

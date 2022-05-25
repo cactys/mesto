@@ -1,12 +1,12 @@
-import { initialCards } from '../scripts/Cards.js';
+import { Card } from './Card.js';
+import { initialCards } from './cards.js';
+import { validationConfig, FormValidator } from './FormValidator.js';
 
 // !DOM элеиенты
 const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupAddPhoto = document.querySelector('.popup_type_add-photo');
-// const popupPhoto = document.querySelector('.popup_type_photo');
 // *находим блок для карт
-const cardsContainer = document.querySelector('.cards');
 // *находим в DOM кнопку редактирования профиля
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // *находим в DOM кнопку добавления фотографии
@@ -14,9 +14,10 @@ const buttonAddPhoto = document.querySelector('.profile__add-button');
 // *находим в DOM заголовок и описание профиля
 const nameProfile = document.querySelector('.profile__title');
 const jobProfile = document.querySelector('.profile__subtitle');
-// *находим в DOM фотографию и подпись карточки
-// const photoImage = document.querySelector('.photo-container__photo');
-// const photoTitle = document.querySelector('.photo-container__photo-title');
+// *Находим в DOM элементы карточки
+export const popupElement = document.querySelector('.popup_type_photo');
+export const photoImage = document.querySelector('.photo-container__photo');
+export const photoTitle = document.querySelector('.photo-container__photo-title');
 // *объявить form || input
 // ?форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
@@ -42,52 +43,13 @@ const handleSubmitAddCardForm = (evt) => {
   closePopup(popupAddPhoto);
 };
 
-// ?generate card
-// const generateCard = (cardData) => {
-  // ?клонировать узел карт
-  // const newCard = document
-  //   .querySelector('.card-template')
-  //   .content.querySelector('.card')
-  //   .cloneNode(true);
+// ?генерация карточек
+initialCards.forEach((initialCard) => {
+  const card = new Card(initialCard, '.card-template');
+  const cardElement = card.generateCard();
 
-  // ?находим в DOM изображение карты
-  // const cardImage = newCard.querySelector('.card__image');
-
-  // ?открыть картинку в размере 75% дисплея
-  // cardImage.addEventListener('click', function () {
-  //   photoImage.src = cardData.link;
-
-  //   photoTitle.textContent = cardTitle.textContent;
-  //   photoImage.alt = cardData.name;
-
-  //   openPopup(popupPhoto);
-  // });
-
-  // ?находим в DOM описание карты
-  // const cardTitle = newCard.querySelector('.card__name');
-  // cardTitle.textContent = cardData.name;
-  // cardImage.alt = cardData.name;
-  // cardImage.src = cardData.link;
-
-  // ?событие кнопки "delete"
-  // const deleteCard = newCard.querySelector('.card__trach-icon');
-  // deleteCard.addEventListener('click', (evt) => {
-  //   evt.target.closest('.card').remove();
-  // });
-
-  // ?событие кнопки "like"
-//   const likeCard = newCard.querySelector('.card__like-button');
-//   likeCard.addEventListener('click', () => {
-//     likeCard.classList.toggle('card__like-button_active');
-//   });
-
-//   return newCard;
-// };
-
-// ?rendering card
-// const renderingCard = (cardData) => {
-//   cardsContainer.prepend(generateCard(cardData));
-// };
+  document.querySelector('.cards').append(cardElement);
+});
 
 // *==== работа с формами profile ====
 // ?Обработчик «отправки» формы редактирования профиля
@@ -115,19 +77,19 @@ const openPropfilePopup = () => {
 };
 
 // ?открыть popup
-const openPopup = (popupName) => {
+export const openPopup = (popupName) => {
   document.addEventListener('keydown', handleEscageKey);
   popupName.classList.add('popup_opened');
 };
 
 // ?заркрыть popup
-const closePopup = (popupName) => {
+export const closePopup = (popupName) => {
   document.removeEventListener('keydown', handleEscageKey);
   popupName.classList.remove('popup_opened');
 };
 
 // ?закрыть popup по нажатию Escape или оверлей мыши
-const handleEscageKey = (evt) => {
+export const handleEscageKey = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -135,11 +97,6 @@ const handleEscageKey = (evt) => {
 };
 
 // *==== обработка событий ====
-// ?перебрать массив с карточками
-// initialCards.forEach((cardData) => {
-//   renderingCard(cardData);
-// });
-
 // ?прикрепить обработчик к форме добавить фото:
 // ?он будет следить за событием “submit” - «создать»
 formPhoto.addEventListener('submit', handleSubmitAddCardForm);
@@ -171,5 +128,3 @@ buttonEditProfile.addEventListener('click', function () {
 buttonAddPhoto.addEventListener('click', function () {
   openPopup(popupAddPhoto);
 });
-
-// renderElements(initialCards);

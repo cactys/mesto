@@ -55,7 +55,6 @@ export class FormValidator {
 
   // установтиь слушателя событий
   _setEventListeners = () => {
-    // состояние кнопки
     this.toggleButtonState();
 
     this._formElement.addEventListener('submit', (evt) => {
@@ -70,7 +69,7 @@ export class FormValidator {
     });
   };
 
-  // включить || отключить кнопку
+  // включить|отключить кнопку
   toggleButtonState = () => {
     if (this._hasInvalidInput()) {
       this._buttonElement.disabled = true;

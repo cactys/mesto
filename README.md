@@ -1,10 +1,10 @@
 # Mesto
 ## Проектная работа студента Яндекс.Практикум
-~~Четвертая~~ ~~Пятая~~ Шестая проектная работа.  
+~~Четвертая~~ ~~Пятая~~ ~~Шестая~~ Седьмая проектная работа.  
 + Вёрстка по макету
   - [~~Figma макет проектной работы №4~~](https://www.figma.com/file/FwbxqeyjpfDI5YAxPnpc65/JavaScript.-Sprint-4?node-id=28212%3A155)
   - [~~Figma макет проектной работы №5~~](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
-  - [Figma макет проектной работы №6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
+  - [~~Figma макет проектной работы №6~~](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 + ~~Попап редактирования профиля~~
 + ~~Попап добавления новой фотографии~~
@@ -32,8 +32,10 @@
   + ~~Активная кнопка удаления фотограции~~
   + ~~Активная кнопка "like" на фотографии~~
   + ~~Открытие фотографии в пропорции 75% дисплея~~
-  + закрытие попап по нажатию Escape или оверлей клие мыши.
-  + валидация форм ввода
+  + ~~закрытие попап по нажатию Escape или оверлей клие мыши.~~
+  + ~~валидация форм ввода~~
+  + Рефакторинг
+  + Создание классов Card & FormValidator
 
 [Ссылка на gh-pages проект](https://cactys.github.io/mesto/)
 ---

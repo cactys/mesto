@@ -58,6 +58,7 @@ export class FormValidator {
     this.toggleButtonState();
 
     this._formElement.addEventListener('submit', (evt) => {
+      // ! Эта строчка отменяет стандартную отправку формы.
       evt.preventDefault();
     });
 

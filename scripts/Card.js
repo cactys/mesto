@@ -1,10 +1,9 @@
-import { openPopup, popupElement, photoImage, photoTitle } from './index.js';
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, openPhotoPopup) {
     this._title = data.name;
     this._image = data.link;
     this._cardSelector = cardSelector;
+    this._handleOpenPopup = openPhotoPopup;
   }
 
   _getTemplate() {
@@ -18,42 +17,35 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardTitle = this._element.querySelector('.card__name');
+    this._buttonLike = this._element.querySelector('.card__like-button');
+    this._buttonDelete = this._element.querySelector('.card__trach-icon');
+
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._title;
+    this._cardTitle.textContent = this._title;
+
     this._setEventListeners();
-
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__image').alt = this._title;
-    this._element.querySelector('.card__name').textContent = this._title;
-
     return this._element;
   }
 
   _handleDeleteCard = () => {
     // удалить карточку
     this._element.remove();
+    this._element = null;
   };
 
-  _handleLikeCard(evt) {
+  _handleLikeCard = () => {
     // лайкнуть карточку
-    evt.target.classList.toggle('card__like-button_active');
-  }
-
-  _handleOpenPopup = () => {
-    // открыть фотографию карточки
-    photoImage.src = this._image;
-    photoImage.alt = this._title;
-    photoTitle.textContent = this._title;
-    openPopup(popupElement);
+    this._buttonLike.classList.toggle('card__like-button_active');
   };
 
   _setEventListeners() {
-    this._element
-      .querySelector('.card__image')
-      .addEventListener('click', this._handleOpenPopup); // открыть фотографию карточки
-    this._element
-      .querySelector('.card__trach-icon')
-      .addEventListener('click', this._handleDeleteCard); // удалить карточку
-    this._element
-      .querySelector('.card__like-button')
-      .addEventListener('click', this._handleLikeCard); // лайкнуть карточку
+    this._cardImage.addEventListener('click', () =>
+      this._handleOpenPopup(this._title, this._image)
+    ); // открыть фотографию карточки
+    this._buttonDelete.addEventListener('click', this._handleDeleteCard); // удалить карточку
+    this._buttonLike.addEventListener('click', this._handleLikeCard); // лайкнуть карточку
   }
 }

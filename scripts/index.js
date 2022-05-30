@@ -86,18 +86,18 @@ const openPropfilePopup = () => {
 
 // ? открыть popup
 const openPopup = (popupName) => {
-  document.addEventListener('keydown', handleEscageKey);
+  document.addEventListener('keydown', handleEscapeKey);
   popupName.classList.add('popup_opened');
 };
 
 // ? заркрыть popup
 const closePopup = (popupName) => {
-  document.removeEventListener('keydown', handleEscageKey);
+  document.removeEventListener('keydown', handleEscapeKey);
   popupName.classList.remove('popup_opened');
 };
 
 // ? закрыть popup по нажатию Escape или оверлей мыши
-const handleEscageKey = (evt) => {
+const handleEscapeKey = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);

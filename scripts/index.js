@@ -54,7 +54,7 @@ const handleSubmitAddCardForm = () => {
 };
 
 // ? редактирование профиля
-const handleSubmitEditProfileForm = (evt) => {
+const handleSubmitEditProfileForm = () => {
   // ? получить значение полей jobInput и nameInput из свойства value
   // ? втсавить новые значения с помощью textContent
   nameProfile.textContent = nameInput.value;
@@ -133,11 +133,11 @@ popups.forEach((popup) => {
 
 // ? открыть popup
 // ! popup редактировать профиль
-buttonEditProfile.addEventListener('click', function () {
+buttonEditProfile.addEventListener('click', () => {
   openPropfilePopup();
 });
 
 // ! popu добавить фотографию
-buttonAddPhoto.addEventListener('click', function () {
+buttonAddPhoto.addEventListener('click', () => {
   openPopup(popupAddPhoto);
 });

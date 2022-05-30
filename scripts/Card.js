@@ -30,6 +30,10 @@ export class Card {
     return this._element;
   }
 
+  _handleCardClick = () => {
+    this._handleOpenPopup(this._title, this._image);
+  };
+
   _handleDeleteCard = () => {
     // удалить карточку
     this._element.remove();
@@ -42,9 +46,7 @@ export class Card {
   };
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', () =>
-      this._handleOpenPopup(this._title, this._image)
-    ); // открыть фотографию карточки
+    this._cardImage.addEventListener('click', this._handleCardClick); // открыть фотографию карточки
     this._buttonDelete.addEventListener('click', this._handleDeleteCard); // удалить карточку
     this._buttonLike.addEventListener('click', this._handleLikeCard); // лайкнуть карточку
   }

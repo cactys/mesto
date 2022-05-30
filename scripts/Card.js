@@ -31,6 +31,7 @@ export class Card {
   }
 
   _handleCardClick = () => {
+    // открыть фотографию карточки
     this._handleOpenPopup(this._title, this._image);
   };
 

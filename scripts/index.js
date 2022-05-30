@@ -80,6 +80,7 @@ const openPropfilePopup = () => {
   jobInput.value = jobProfile.textContent;
 
   validateFormProfile.toggleButtonState();
+  validateFormProfile.resetError();
   openPopup(popupProfile);
 };
 

@@ -1,56 +1,66 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import { validationConfig } from './validate.js';
-import { initialCards } from './cards.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
+import {
+  validationConfig,
+  initialCards,
+  popups,
+  popupProfile,
+  popupAddPhoto,
+  buttonEditProfile,
+  buttonAddPhoto,
+  nameProfile,
+  jobProfile,
+  cardTemplate,
+  cardGrid,
+  popupPhoto,
+  photoImage,
+  photoTitle,
+  formProfile,
+  nameInput,
+  jobInput,
+  formPhoto,
+  inputPhotoTitle,
+  inputPhotoSrc,
+} from '../utils/constants.js';
 
-// !DOM элеиенты
-// * DOM попапы
-const popups = document.querySelectorAll('.popup');
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupAddPhoto = document.querySelector('.popup_type_add-photo');
-// * находим в DOM кнопку редактирования профиля
-const buttonEditProfile = document.querySelector('.profile__edit-button');
-// * находим в DOM кнопку добавления фотографии
-const buttonAddPhoto = document.querySelector('.profile__add-button');
-// * находим в DOM заголовок и описание профиля
-const nameProfile = document.querySelector('.profile__title');
-const jobProfile = document.querySelector('.profile__subtitle');
-// * Находим в DOM элементы карточки
-const cardGrid = document.querySelector('.cards');
-const popupPhoto = document.querySelector('.popup_type_photo');
-const photoImage = document.querySelector('.photo-container__photo');
-const photoTitle = document.querySelector('.photo-container__photo-title');
-// * объявить form || input
-// ? форма редактирование профиля
-const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
-const nameInput = formProfile.querySelector('.form__input_profile-name'); // поле ввода имени
-const jobInput = formProfile.querySelector('.form__input_profile-job'); // поле ввода деятельности
-// ? форма добавление карточки
-const formPhoto = document.querySelector('.form_add-photo'); // форма добавления карточки
-const inputPhotoTitle = formPhoto.querySelector('.form__input_photo-title'); // поле ввода названия
-const inputPhotoSrc = formPhoto.querySelector('.form__input_photo-src'); // поле ввода ссылки на фотографию
 // * валидация
 const validateFormProfile = new FormValidator(validationConfig, formProfile);
-validateFormProfile.enableValidation();
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
-validateFormCard.enableValidation();
 
-// ? рендер карт
-const renderCard = (initialCard) => {
-  const card = new Card(initialCard, '.card-template', openPhotoPopup);
-  const cardElement = card.generateCard();
-  return cardElement;
+// ? открыть popup картинки
+const openPhotoPopup = (title, image) => {
+  photoImage.src = image;
+  photoImage.alt = title;
+  photoTitle.textContent = title;
+  openPopup(popupPhoto);
 };
+
+const renderCard = (item) => {
+  const card = new Card(item, cardTemplate, openPhotoPopup);
+  const cardElement = card.generateCard();
+  defaultCards.addItem(cardElement);
+};
+
+const defaultCards = new Section(
+  {
+    data: initialCards,
+    renderer: renderCard,
+  },
+  '.cards'
+);
 
 // ? добавление пользовательской карточки
 const handleSubmitAddCardForm = () => {
   const addCard = { name: inputPhotoTitle.value, link: inputPhotoSrc.value };
   const cardElement = renderCard(addCard);
-  cardGrid.prepend(cardElement);
 
   formPhoto.reset();
   closePopup(popupAddPhoto);
   validateFormCard.resetError();
+
+  return cardElement;
 };
 
 // ? редактирование профиля
@@ -64,14 +74,6 @@ const handleSubmitEditProfileForm = () => {
 };
 
 // *==== POPUP ====
-// ? открыть popup картинки
-const openPhotoPopup = (title, image) => {
-  photoImage.src = image;
-  photoImage.alt = title;
-  photoTitle.textContent = title;
-  openPopup(popupPhoto);
-};
-
 // ? открыть popup редактировать профиль
 const openPropfilePopup = () => {
   // ? получить значение полей nameProfile и jobProfile из свойства textContent
@@ -105,12 +107,6 @@ const handleEscapeKey = (evt) => {
 };
 
 // *==== обработка событий ====
-// ? генерация карточек
-initialCards.forEach((data) => {
-  const cardElement = renderCard(data);
-  cardGrid.append(cardElement);
-});
-
 // ? прикрепить обработчик к форме добавить фото:
 // ? он будет следить за событием “submit” - «создать»
 formPhoto.addEventListener('submit', handleSubmitAddCardForm);
@@ -142,3 +138,7 @@ buttonEditProfile.addEventListener('click', () => {
 buttonAddPhoto.addEventListener('click', () => {
   openPopup(popupAddPhoto);
 });
+
+validateFormCard.enableValidation();
+validateFormProfile.enableValidation();
+defaultCards.renderItems();

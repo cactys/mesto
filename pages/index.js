@@ -25,7 +25,7 @@ import {
 const validateFormProfile = new FormValidator(validationConfig, formProfile);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 
-// * открыть popup картинки
+// * попап картинки
 const openPhotoPopup = new PopupWithImage(popupPhoto);
 
 // * рендер карт
@@ -52,7 +52,7 @@ const defaultCards = new Section(
   '.cards'
 );
 
-// * открыть попап добавление фотографии
+// * попап добавление фотографии
 const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
   const addCard = {
     name: data.title,
@@ -68,7 +68,7 @@ const profile = new UserInfo({
   userAbout: jobProfile,
 });
 
-// * открыть попап редактирование профиля
+// * попап редактирование профиля
 const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
   for (let i = 0; i <= data.length; i++) {
     profile.setUserInfo(data[i]);

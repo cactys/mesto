@@ -50,7 +50,6 @@ const jobProfile = document.querySelector('.profile__subtitle');
 const buttonAddPhoto = document.querySelector('.profile__add-button');
 // * Находим в DOM элементы карточки
 const cardTemplate = '.card-template';
-const cardGrid = document.querySelector('.cards');
 const popupPhoto = document.querySelector('.popup_type_photo');
 const photoImage = document.querySelector('.photo-container__photo');
 const photoTitle = document.querySelector('.photo-container__photo-title');
@@ -72,7 +71,6 @@ export {
   jobProfile,
   buttonAddPhoto,
   cardTemplate,
-  cardGrid,
   popupPhoto,
   photoImage,
   photoTitle,

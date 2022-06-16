@@ -5,13 +5,6 @@ export default class UserInfo {
   }
 
   // возвращает объект с данными пользователя
-  // getUserInfo() {
-  //   const user = {
-  //     name: this._userName.textContent,
-  //     about: this._userAbout.textContent,
-  //   };
-  //   return user;
-  // }
   getUserInfo() {
     return {
       name: this._userName.textContent,

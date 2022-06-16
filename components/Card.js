@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, cardSelector, openPhotoPopup) {
+  constructor({ data, handleCardClick }, cardSelector) {
     this._title = data.name;
     this._image = data.link;
+    this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
-    this._handleOpenPopup = openPhotoPopup;
   }
 
   _getTemplate() {
@@ -17,6 +17,7 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
     this._cardImage = this._element.querySelector('.card__image');
     this._cardTitle = this._element.querySelector('.card__name');
     this._buttonLike = this._element.querySelector('.card__like-button');
@@ -29,11 +30,6 @@ export default class Card {
     this._setEventListeners();
     return this._element;
   }
-
-  _handleCardClick = () => {
-    // открыть фотографию карточки
-    this._handleOpenPopup(this._title, this._image);
-  };
 
   _handleDeleteCard = () => {
     // удалить карточку

@@ -51,8 +51,6 @@ const buttonAddPhoto = document.querySelector('.profile__add-button');
 // * Находим в DOM элементы карточки
 const cardTemplate = '.card-template';
 const popupPhoto = document.querySelector('.popup_type_photo');
-const photoImage = document.querySelector('.photo-container__photo');
-const photoTitle = document.querySelector('.photo-container__photo-title');
 // * объявить form || input
 // ? форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
@@ -72,8 +70,6 @@ export {
   buttonAddPhoto,
   cardTemplate,
   popupPhoto,
-  photoImage,
-  photoTitle,
   formProfile,
   nameInput,
   jobInput,

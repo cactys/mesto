@@ -29,8 +29,8 @@ const validateFormCard = new FormValidator(validationConfig, formPhoto);
 // * попап картинки
 const openPhotoPopup = new PopupWithImage(popupPhoto);
 
-// * рендер карт
-const renderCard = (item) => {
+// * создать карточку
+const createCard = (item) => {
   const card = new Card(
     {
       data: item,
@@ -41,6 +41,13 @@ const renderCard = (item) => {
     cardTemplate
   );
   const cardElement = card.generateCard();
+
+  return cardElement;
+};
+
+// * рендер карт
+const renderCard = (item) => {
+  const cardElement = createCard(item);
   defaultCards.addItem(cardElement);
 };
 
@@ -60,7 +67,6 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
     link: data.src,
   };
   renderCard(addCard);
-  openAddPhotoPopup.close();
 });
 
 // * информация о авторе
@@ -70,11 +76,13 @@ const profile = new UserInfo({
 });
 
 // * попап редактирование профиля
-const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
-  for (let i = 0; i <= data.length; i++) {
-    profile.setUserInfo(data[i]);
-  }
-  openPropfilePopup.close();
+const openPropfilePopup = new PopupWithForm(popupProfile, (array) => {
+  // так бывает когда думаешь что принимаешь массив вместо объекта =).
+  // перепутал.
+  profile.setUserInfo({
+    name: array.name,
+    about: array.job,
+  });
 });
 
 // ? события
@@ -85,14 +93,12 @@ buttonEditProfile.addEventListener('click', () => {
   nameInput.value = getProfile.name;
   jobInput.value = getProfile.about;
 
-  validateFormProfile.toggleButtonState();
-  validateFormProfile.resetError();
+  validateFormProfile.resetValidation();
   openPropfilePopup.open();
 });
 // ! popup добавить фотографию
 buttonAddPhoto.addEventListener('click', () => {
-  formPhoto.reset();
-  validateFormCard.resetError();
+  validateFormCard.resetValidation();
   openAddPhotoPopup.open();
 });
 

@@ -1,11 +1,10 @@
-import { photoImage, photoTitle } from '../utils/constants.js';
 import Popup from './Popup.js';
 
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._imagePhoto = photoImage;
-    this._imageTitle = photoTitle;
+    this._imagePhoto = document.querySelector('.photo-container__photo');
+    this._imageTitle = document.querySelector('.photo-container__photo-title');
   }
 
   // перезаписывает родительский метод open

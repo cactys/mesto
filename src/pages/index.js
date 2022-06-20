@@ -26,10 +26,10 @@ import './index.css';
 const validateFormProfile = new FormValidator(validationConfig, formProfile);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 // Если будет интересно, можно универсально создать экземпляры валидаторов всех форм, поместив их все в один объект, а потом брать из него валидатор по атрибуту name, который задан для формы. Это очень универсально и для любого кол-ва форм подходит.
-// const formValidators = {}
+// ! const formValidators = {}
 
 // Включение валидации
-// const enableValidation = (config) => {
+// ! const enableValidation = (config) => {
 // ! const formList = Array.from(document.querySelectorAll(config.formSelector))
 // ! formList.forEach((formElement) => {
 // !   const validator = new FormValidator(formElement, config)

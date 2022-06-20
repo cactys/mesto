@@ -99,12 +99,10 @@ const profile = new UserInfo({
 });
 
 // * попап редактирование профиля
-const openPropfilePopup = new PopupWithForm(popupProfile, (array) => {
-  // так бывает когда думаешь что принимаешь массив вместо объекта =).
-  // перепутал.
+const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
   profile.setUserInfo({
-    name: array.name,
-    about: array.job,
+    name: data.name,
+    about: data.job,
   });
 });
 

@@ -49,9 +49,6 @@ const validateFormCard = new FormValidator(validationConfig, formPhoto);
 // Gennadiy Barsegyan
 // ревьюер
 
-// * попап картинки
-const openPhotoPopup = new PopupWithImage(popupPhoto);
-
 // * создать карточку
 const createCard = (item) => {
   const card = new Card(
@@ -82,6 +79,9 @@ const defaultCards = new Section(
   },
   '.cards'
 );
+
+// * попап картинки
+const openPhotoPopup = new PopupWithImage(popupPhoto);
 
 // * попап добавление фотографии
 const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {

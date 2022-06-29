@@ -25,29 +25,6 @@ import './index.css';
 // * валидация
 const validateFormProfile = new FormValidator(validationConfig, formProfile);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
-// Если будет интересно, можно универсально создать экземпляры валидаторов всех форм, поместив их все в один объект, а потом брать из него валидатор по атрибуту name, который задан для формы. Это очень универсально и для любого кол-ва форм подходит.
-// ! const formValidators = {}
-
-// Включение валидации
-// ! const enableValidation = (config) => {
-// ! const formList = Array.from(document.querySelectorAll(config.formSelector))
-// ! formList.forEach((formElement) => {
-// !   const validator = new FormValidator(formElement, config)
-//  получаем данные из атрибута `name` у формы
-// !  const formName = formElement.getAttribute('name')
-//  вот тут в объект записываем под именем формы
-// !    formValidators[formName] = validator;
-// !   validator.enableValidation();
-// !  });
-// !};
-// ! enableValidation(config);
-// И теперь можно использовать валидаторы для деактивации кнопки и тд
-// ! formValidators[ profileForm.getAttribute('name') ].resetValidation()
-// или можно использовать строку (ведь Вы знаете, какой атрибут `name` у каждой формы)
-// ! formValidators['profile-form'].resetValidation()
-// МОЖНО ЛУЧШЕ
-// Gennadiy Barsegyan
-// ревьюер
 
 // * создать карточку
 const createCard = (item) => {

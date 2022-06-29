@@ -21,18 +21,6 @@ export default class PopupWithForm extends Popup {
     return this._formValues;
   }
 
-  // Можно сделать метод  setInputValues в классе PopupWithForm, который будет вставлять данные в инпуты:
-  // ! setInputValues(data) {
-  // !   this._inputList.forEach((input) => {
-  // тут вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
-  // !     input.value = data[input.name];
-  // !   });
-  // ! }
-  // И не нужно будет искать эти инпуты в index.js и что-то вставлять в них при открытии профиля.
-  // МОЖНО ЛУЧШЕ
-  // Gennadiy Barsegyan
-  // ревьюер
-
   // перезапись родительского метода setEventListeners
   // добавляет обработчик submit формы
   setEventListeners() {

@@ -5,11 +5,6 @@ export default class PopupWithImage extends Popup {
     super(popupSelector);
     this._imagePhoto = document.querySelector('.photo-container__photo');
     this._imageTitle = document.querySelector('.photo-container__photo-title');
-    // Эти элементы нужно находить внутри попапа this._popup, который доступен тут от родительского класса.
-    // Не нужно этого делать во всем document, так как это может быть дольше по времени.
-    // МОЖНО ЛУЧШЕ
-    // Gennadiy Barsegyan
-    // ревьюер
   }
 
   // перезаписывает родительский метод open

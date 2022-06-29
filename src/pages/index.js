@@ -4,26 +4,36 @@ import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import Api from '../scripts/components/Api.js';
 import {
   validationConfig,
   initialCards,
   popupProfile,
+  popupEditAvatar,
   popupAddPhoto,
+  popupConfirm,
   buttonEditProfile,
+  buttonEditAvatar,
+  nameProfile,
+  jobProfile,
+  avatarProfile,
   buttonAddPhoto,
   cardTemplate,
   popupPhoto,
   formProfile,
   nameInput,
   jobInput,
+  formAvatar,
   formPhoto,
-  nameProfile,
-  jobProfile,
+  API_CONFIG,
 } from '../scripts/utils/constants.js';
 import './index.css';
 
+const api = new Api(API_CONFIG);
+
 // * валидация
 const validateFormProfile = new FormValidator(validationConfig, formProfile);
+const validateFormAvatar = new FormValidator(validationConfig, formAvatar);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 
 // * создать карточку
@@ -42,45 +52,76 @@ const createCard = (item) => {
   return cardElement;
 };
 
-// * рендер карт
-const renderCard = (item) => {
-  const cardElement = createCard(item);
-  defaultCards.addItem(cardElement);
-};
-
 // * отрисовка карт
 const defaultCards = new Section(
   {
-    data: initialCards,
-    renderer: renderCard,
+    data: [],
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      defaultCards.addItem(cardElement);
+    },
   },
   '.cards'
 );
+
+// * рендер карт
+// const renderCard = (item) => {
+//   const cardElement = createCard(item);
+//   defaultCards.addItem(cardElement);
+// };
 
 // * попап картинки
 const openPhotoPopup = new PopupWithImage(popupPhoto);
 
 // * попап добавление фотографии
 const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
-  const addCard = {
-    name: data.title,
-    link: data.src,
-  };
-  renderCard(addCard);
+  openAddPhotoPopup.loading(true);
+  api
+    .createCards(data)
+    .then((data) => {
+      debugger;
+      const addCard = {
+        name: data.title,
+        link: data.src,
+      };
+
+      renderCard(addCard);
+    })
+    .catch((err) => console.log(err))
+    .finally(() => openAddPhotoPopup.loading(false));
+  // const addCard = {
+  //   name: data.title,
+  //   link: data.src,
+  // };
+  // renderCard(addCard);
 });
 
 // * информация о авторе
 const profile = new UserInfo({
   userName: nameProfile,
   userAbout: jobProfile,
+  userAvatar: avatarProfile,
 });
 
 // * попап редактирование профиля
 const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
-  profile.setUserInfo({
-    name: data.name,
-    about: data.job,
-  });
+  openPropfilePopup.loading(true);
+
+  api
+    .editUserInfo(data)
+    .then((res) => profile.setUserInfo(res))
+    .catch((err) => console.log(err))
+    .finally(() => openPropfilePopup.loading(false));
+});
+
+const openAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
+  openAvatarPopup.loading(true);
+
+  api
+    .editAvatar(data)
+    .then((res) => profile.setUserInfo(res))
+    .catch((err) => console.log(err))
+    .finally(() => openAvatarPopup.loading(false));
 });
 
 // ? события
@@ -94,28 +135,43 @@ buttonEditProfile.addEventListener('click', () => {
   validateFormProfile.resetValidation();
   openPropfilePopup.open();
 });
+// ! popup редактировать аватара
+buttonEditAvatar.addEventListener('click', () => {
+  validateFormAvatar.resetValidation();
+  openAvatarPopup.open();
+});
 // ! popup добавить фотографию
 buttonAddPhoto.addEventListener('click', () => {
   validateFormCard.resetValidation();
   openAddPhotoPopup.open();
 });
 
+Promise.all([api.getUser(), api.getCards()])
+  .then(([userData, cardsData]) => {
+    profile.setUserInfo(userData);
+    // debugger;
+    defaultCards.addItems(cardsData);
+  })
+  .catch((err) => console.log(err));
+
 // * включить валидация
 validateFormCard.enableValidation();
 validateFormProfile.enableValidation();
+validateFormAvatar.enableValidation();
 // * отрисовать карты
 defaultCards.renderItems();
 // * открыть попап
 openAddPhotoPopup.setEventListeners();
 openPhotoPopup.setEventListeners();
 openPropfilePopup.setEventListeners();
+openAvatarPopup.setEventListeners();
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-44/cards', {
-  headers: {
-    authorization: '78b845d7-f9bb-43fd-9d7f-fb92a3c4ec96',
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    console.log(result);
-  });
+api
+  .getUsers()
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+
+api
+  .getUser()
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));

@@ -32,6 +32,14 @@ export default class PopupWithForm extends Popup {
     });
   }
 
+  loading(isLoad) {
+    if (isLoad) {
+      this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
+  }
+
   close() {
     super.close();
     this._popupForm.reset();

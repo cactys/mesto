@@ -109,3 +109,13 @@ defaultCards.renderItems();
 openAddPhotoPopup.setEventListeners();
 openPhotoPopup.setEventListeners();
 openPropfilePopup.setEventListeners();
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-44/cards', {
+  headers: {
+    authorization: '78b845d7-f9bb-43fd-9d7f-fb92a3c4ec96',
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });

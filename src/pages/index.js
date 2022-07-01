@@ -63,13 +63,16 @@ const openPhotoPopup = new PopupWithImage(popupPhoto);
 
 // * попап добавление фотографии
 const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
-  // openAddPhotoPopup.loading(true);
+  openAddPhotoPopup.loading(true);
 
-  const addCard = {
-    name: data.title,
-    link: data.src,
-  };
-  renderCard(addCard);
+  // debugger;
+  api
+    .createCard(data)
+    .then((res) => {
+      defaultCards.addItem(createCard(res));
+    })
+    .catch((err) => console.log(err))
+    .finally(() => openAddPhotoPopup.loading(false));
 });
 
 // * информация о авторе
@@ -122,7 +125,8 @@ buttonAddPhoto.addEventListener('click', () => {
   openAddPhotoPopup.open();
 });
 
-api.getAllPromise()
+api
+  .getAllPromise()
   .then(([userData, cardsData]) => {
     profile.setUserInfo(userData);
     // debugger;
@@ -142,17 +146,17 @@ openPhotoPopup.setEventListeners();
 openPropfilePopup.setEventListeners();
 openAvatarPopup.setEventListeners();
 
-api
-  .getUsers()
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
+// api
+//   .getUsers()
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
 
-api
-  .getUser()
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
+// api
+//   .getUser()
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
 
-api
-  .getCards()
-  .then((res) => console.log(res))
-  .catch((err) => console.log(err));
+// api
+//   .getCards()
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));

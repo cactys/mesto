@@ -1,7 +1,8 @@
 export default class Card {
-  constructor({ data, handleCardClick }, cardSelector) {
-    this._title = data.title;
-    this._image = data.src;
+  constructor({ name, link }, handleCardClick, cardSelector) {
+    // debugger;
+    this._title = name;
+    this._image = link;
     this._handleCardClick = handleCardClick;
     this._cardSelector = cardSelector;
   }
@@ -43,7 +44,9 @@ export default class Card {
   };
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', this._handleCardClick); // открыть фотографию карточки
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._title, this._image);
+    }); // открыть фотографию карточки
     this._buttonDelete.addEventListener('click', this._handleDeleteCard); // удалить карточку
     this._buttonLike.addEventListener('click', this._handleLikeCard); // лайкнуть карточку
   }

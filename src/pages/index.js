@@ -36,33 +36,21 @@ const validateFormProfile = new FormValidator(validationConfig, formProfile);
 const validateFormAvatar = new FormValidator(validationConfig, formAvatar);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 
+const handleCardClick = (name, link) => {
+  openPhotoPopup.open(name, link);
+};
+
 // * создать карточку
-const createCard = (item) => {
-  const card = new Card(
-    {
-      data: item,
-      handleCardClick: () => {
-        openPhotoPopup.open(item);
-      },
-    },
-    cardTemplate
-  );
+const createCard = (data) => {
+  // debugger;
+  const card = new Card(data, handleCardClick, cardTemplate);
   const cardElement = card.generateCard();
 
   return cardElement;
 };
 
 // * отрисовка карт
-const defaultCards = new Section(
-  {
-    data: [],
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      defaultCards.addItem(cardElement);
-    },
-  },
-  '.cards'
-);
+const defaultCards = new Section(createCard, '.cards');
 
 // * рендер карт
 // const renderCard = (item) => {
@@ -75,25 +63,13 @@ const openPhotoPopup = new PopupWithImage(popupPhoto);
 
 // * попап добавление фотографии
 const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
-  openAddPhotoPopup.loading(true);
-  api
-    .createCards(data)
-    .then((data) => {
-      debugger;
-      const addCard = {
-        name: data.title,
-        link: data.src,
-      };
+  // openAddPhotoPopup.loading(true);
 
-      renderCard(addCard);
-    })
-    .catch((err) => console.log(err))
-    .finally(() => openAddPhotoPopup.loading(false));
-  // const addCard = {
-  //   name: data.title,
-  //   link: data.src,
-  // };
-  // renderCard(addCard);
+  const addCard = {
+    name: data.title,
+    link: data.src,
+  };
+  renderCard(addCard);
 });
 
 // * информация о авторе
@@ -146,11 +122,11 @@ buttonAddPhoto.addEventListener('click', () => {
   openAddPhotoPopup.open();
 });
 
-Promise.all([api.getUser(), api.getCards()])
+api.getAllPromise()
   .then(([userData, cardsData]) => {
     profile.setUserInfo(userData);
     // debugger;
-    defaultCards.addItems(cardsData);
+    defaultCards.renderItems(cardsData);
   })
   .catch((err) => console.log(err));
 
@@ -159,7 +135,7 @@ validateFormCard.enableValidation();
 validateFormProfile.enableValidation();
 validateFormAvatar.enableValidation();
 // * отрисовать карты
-defaultCards.renderItems();
+// defaultCards.renderItems();
 // * открыть попап
 openAddPhotoPopup.setEventListeners();
 openPhotoPopup.setEventListeners();
@@ -173,5 +149,10 @@ api
 
 api
   .getUser()
+  .then((res) => console.log(res))
+  .catch((err) => console.log(err));
+
+api
+  .getCards()
   .then((res) => console.log(res))
   .catch((err) => console.log(err));

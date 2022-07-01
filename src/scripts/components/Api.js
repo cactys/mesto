@@ -53,7 +53,7 @@ export default class Api {
     }).then(this._checkingResponse);
   }
 
-  createCards(data) {
+  createCard(data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -61,7 +61,7 @@ export default class Api {
     }).then(this._checkingResponse);
   }
 
-  // getAllPromise() {
-  //   return Promise.all([this.getUser(), this.getCards()]);
-  // }
+  getAllPromise() {
+    return Promise.all([this.getUser(), this.getCards()]);
+  }
 }

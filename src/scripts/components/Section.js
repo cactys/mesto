@@ -1,6 +1,5 @@
 export default class Section {
-  constructor({ data, renderer }, containerSelector) {
-    this._rendererItems = data;
+  constructor(renderer, containerSelector) {
     this._renderer = renderer;
     this._container = document.querySelector(containerSelector);
   }
@@ -8,16 +7,19 @@ export default class Section {
   addItems(data) {
     this._rendererItems = data;
   }
-  
+
   // принимает DOM-элемент и добавляет его в контейнер
-  addItem(element) {
-    this._container.prepend(element);
+  addItem(data) {
+    // debugger;
+    this._container.prepend(data);
   }
-  
-    // метод, который отвечает за отрисовку всех элементов
-    renderItems() {
-      this._rendererItems.forEach((item) => {
-        this._renderer(item);
-      });
-    }
+
+  // метод, который отвечает за отрисовку всех элементов
+  renderItems(items) {
+    // debugger;
+    items.reverse().forEach((item) => {
+      const element = this._renderer(item);
+      this.addItem(element);
+    });
+  }
 }

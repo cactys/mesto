@@ -10,10 +10,10 @@ export default class PopupWithImage extends Popup {
   // перезаписывает родительский метод open
   // вставляет в попап карточки изображение,
   // альтернативное название и подпись картинке
-  open(data) {
-    this._imagePhoto.src = data.link;
-    this._imagePhoto.alt = data.name;
-    this._imageTitle.textContent = data.name;
+  open(name, link) {
+    this._imagePhoto.src = link;
+    this._imagePhoto.alt = name;
+    this._imageTitle.textContent = name;
 
     super.open();
   }

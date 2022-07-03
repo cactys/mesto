@@ -18,8 +18,10 @@
 .card{background:#fff;border-radius:10px;overflow:hidden;position:relative}
 .card__trach-icon{align-self:center;background-color:transparent;background-image:url(e3c42771bff3aaa52f76.svg);background-position:50%;background-repeat:no-repeat;border:none;box-sizing:border-box;cursor:pointer;font-size:0;height:19px;padding:0;position:absolute;right:20px;top:20px;transition:opacity .4s;width:18px}.card__trach-icon:hover{opacity:.6}
 .card__image{background-color:#545454;cursor:pointer;height:282px;margin:0;min-height:282px;min-width:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;vertical-align:top;width:100%}
-.card__description{display:flex;justify-content:space-between;margin:0 20px;padding:25px 0 31px}
-.card__name{color:#000;font-size:24px;font-weight:900;line-height:1.20833;margin:0;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card__description{align-items:center;display:flex;justify-content:space-between;margin:0 22px;padding:25px 0 31px}
+.card__name{color:#000;font-size:24px;font-weight:900;line-height:1.20833;margin:0;max-width:200px;overflow:hidden;text-align:center;text-overflow:ellipsis;white-space:nowrap}
+.card__like-container{display:flex;flex-direction:column;gap:3px}
+.card__like-count{color:#000;font-size:13px;font-weight:400;line-height:1.23077;margin:0;padding:0;text-align:center}
 .card__like-button{align-self:center;background-color:#fff;background-image:url(1ad06e85f169668a1f36.svg);background-position:50%;background-repeat:no-repeat;border:none;box-sizing:border-box;cursor:pointer;font-size:0;height:24px;padding:0;transition:opacity .4s;width:24px}.card__like-button:hover{opacity:.5}
 .card__like-button_active{background-image:url(35948469632d0421d697.svg)}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);display:flex;height:100%;justify-content:center;left:0;opacity:0;position:fixed;top:0;transition:visibility .2s,opacity .2s linear;visibility:hidden;width:100%}

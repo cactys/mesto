@@ -6,13 +6,11 @@ export default class Section {
 
   // принимает DOM-элемент и добавляет его в контейнер
   addItem(data) {
-    // debugger;
     this._container.prepend(data);
   }
 
   // метод, который отвечает за отрисовку всех элементов
   renderItems(items) {
-    // debugger;
     items.reverse().forEach((item) => {
       const element = this._renderer(item);
       this.addItem(element);

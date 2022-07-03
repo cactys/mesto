@@ -36,10 +36,12 @@ const validateFormProfile = new FormValidator(validationConfig, formProfile);
 const validateFormAvatar = new FormValidator(validationConfig, formAvatar);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 
+// * клик по картинке карты
 const handleCardClick = (name, link) => {
   openPhotoPopup.open(name, link);
 };
 
+// * клик по значку лайк
 const handleLikeCard = (card, isLike) => {
   const cardLiked = isLike ? api.putLike(card._id) : api.deletLike(card._id);
   cardLiked
@@ -49,6 +51,7 @@ const handleLikeCard = (card, isLike) => {
     .catch((err) => console.log(err));
 };
 
+// * клик по иконке удаления
 const handleDeleteClick = (card) => {
   openConfirmDeletCard.open();
   openConfirmDeletCard.cardId(card);
@@ -72,6 +75,13 @@ const createCard = (data) => {
 // * отрисовка карт
 const defaultCards = new Section(createCard, '.cards');
 
+// * информация о авторе
+const profile = new UserInfo({
+  userName: nameProfile,
+  userAbout: jobProfile,
+  userAvatar: avatarProfile,
+});
+
 // * попап картинки
 const openPhotoPopup = new PopupWithImage(popupPhoto);
 
@@ -89,6 +99,7 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
     .finally(() => openAddPhotoPopup.loading(false));
 });
 
+// * попап подтверждения удаления карты
 const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
   debugger;
   api
@@ -97,13 +108,6 @@ const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
      openConfirmDeletCard._card.handleDeleteCard();
     })
     .catch((err) => console.log(err));
-});
-
-// * информация о авторе
-const profile = new UserInfo({
-  userName: nameProfile,
-  userAbout: jobProfile,
-  userAvatar: avatarProfile,
 });
 
 // * попап редактирование профиля
@@ -117,6 +121,7 @@ const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
     .finally(() => openPropfilePopup.loading(false));
 });
 
+// * попап изменение аватарки профиля
 const openAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
   openAvatarPopup.loading(true);
 
@@ -149,6 +154,7 @@ buttonAddPhoto.addEventListener('click', () => {
   openAddPhotoPopup.open();
 });
 
+// ? Promise.all
 api
   .getAllPromise()
   .then(([userData, cardsData]) => {

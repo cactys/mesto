@@ -7,7 +7,6 @@ export default class UserInfo {
 
   // возвращает объект с данными пользователя
   getUserInfo() {
-    // debugger;
     return {
       name: this._userName.textContent,
       about: this._userAbout.textContent,

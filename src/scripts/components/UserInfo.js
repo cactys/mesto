@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor({ userName, userAbout, userAvatar }) {
+  constructor({ userName, userAbout, userAvatar}) {
     this._userName = userName;
     this._userAbout = userAbout;
     this._userAvatar = userAvatar;
@@ -7,6 +7,7 @@ export default class UserInfo {
 
   // возвращает объект с данными пользователя
   getUserInfo() {
+    // debugger;
     return {
       name: this._userName.textContent,
       about: this._userAbout.textContent,
@@ -19,5 +20,6 @@ export default class UserInfo {
     this._userName.textContent = data.name;
     this._userAbout.textContent = data.about;
     this._userAvatar.src = data.avatar;
+    this._id = data._id;
   }
 }

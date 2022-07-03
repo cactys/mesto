@@ -11,13 +11,6 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  getUsers() {
-    return fetch(`${this._url}/users`, {
-      method: 'GET',
-      headers: this._headers,
-    }).then(this._checkingResponse);
-  }
-
   getUser() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
@@ -61,6 +54,27 @@ export default class Api {
         name: data.title,
         link: data.src,
       }),
+    }).then(this._checkingResponse);
+  }
+
+  deletCard(cardId) {
+    return fetch(`${this._url}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    }).then(this._checkingResponse);
+  }
+
+  putLike(id) {
+    return fetch(`${this._url}/cards/likes/${id}`, {
+      method: 'PUT',
+      headers: this._headers,
+    }).then(this._checkingResponse);
+  }
+
+  deletLike(id) {
+    return fetch(`${this._url}/cards/likes/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
     }).then(this._checkingResponse);
   }
 

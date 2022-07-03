@@ -4,10 +4,6 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  addItems(data) {
-    this._rendererItems = data;
-  }
-
   // принимает DOM-элемент и добавляет его в контейнер
   addItem(data) {
     // debugger;

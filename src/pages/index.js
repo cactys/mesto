@@ -4,10 +4,10 @@ import Section from '../scripts/components/Section.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import Api from '../scripts/components/Api.js';
 import {
   validationConfig,
-  initialCards,
   popupProfile,
   popupEditAvatar,
   popupAddPhoto,
@@ -40,10 +40,30 @@ const handleCardClick = (name, link) => {
   openPhotoPopup.open(name, link);
 };
 
+const handleLikeCard = (card, isLike) => {
+  const cardLiked = isLike ? api.putLike(card._id) : api.deletLike(card._id);
+  cardLiked
+    .then(() => {
+      card.addLike(isLike);
+    })
+    .catch((err) => console.log(err));
+};
+
+const handleDeleteClick = (card) => {
+  openConfirmDeletCard.open();
+  openConfirmDeletCard.cardId(card);
+};
+
 // * создать карточку
 const createCard = (data) => {
-  // debugger;
-  const card = new Card(data, handleCardClick, cardTemplate);
+  const card = new Card(
+    data,
+    profile._id,
+    handleCardClick,
+    handleLikeCard,
+    handleDeleteClick,
+    cardTemplate
+  );
   const cardElement = card.generateCard();
 
   return cardElement;
@@ -51,12 +71,6 @@ const createCard = (data) => {
 
 // * отрисовка карт
 const defaultCards = new Section(createCard, '.cards');
-
-// * рендер карт
-// const renderCard = (item) => {
-//   const cardElement = createCard(item);
-//   defaultCards.addItem(cardElement);
-// };
 
 // * попап картинки
 const openPhotoPopup = new PopupWithImage(popupPhoto);
@@ -73,6 +87,16 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
     })
     .catch((err) => console.log(err))
     .finally(() => openAddPhotoPopup.loading(false));
+});
+
+const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
+  debugger;
+  api
+    .deletCard(cardId)
+    .then(() => {
+     openConfirmDeletCard._card.handleDeleteCard();
+    })
+    .catch((err) => console.log(err));
 });
 
 // * информация о авторе
@@ -138,25 +162,9 @@ api
 validateFormCard.enableValidation();
 validateFormProfile.enableValidation();
 validateFormAvatar.enableValidation();
-// * отрисовать карты
-// defaultCards.renderItems();
 // * открыть попап
 openAddPhotoPopup.setEventListeners();
+openConfirmDeletCard.setEventListeners();
 openPhotoPopup.setEventListeners();
 openPropfilePopup.setEventListeners();
 openAvatarPopup.setEventListeners();
-
-// api
-//   .getUsers()
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
-
-// api
-//   .getUser()
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
-
-// api
-//   .getCards()
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));

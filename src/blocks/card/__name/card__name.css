@@ -3,6 +3,7 @@
   margin: 0;
   color: #000;
   text-overflow: ellipsis;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   font-weight: 900;

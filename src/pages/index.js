@@ -43,7 +43,7 @@ const handleCardClick = (name, link) => {
 
 // * клик по значку лайк
 const handleLikeCard = (card, isLike) => {
-  const cardLiked = isLike ? api.putLike(card._id) : api.deletLike(card._id);
+  const cardLiked = isLike ? api.putLike(card._id) : api.deleteLike(card._id);
   cardLiked
     .then(() => {
       card.addLike(isLike);
@@ -102,9 +102,9 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
 // * попап подтверждения удаления карты
 const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
   api
-    .deletCard(cardId)
+    .deleteCard(cardId)
     .then(() => {
-      cardId.handleDeleteClick();
+      cardId.handleDeleteCard();
     })
     .catch((err) => console.log(err));
 });

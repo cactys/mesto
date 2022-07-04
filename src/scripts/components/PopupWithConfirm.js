@@ -19,6 +19,6 @@ export default class PopupWithConfirm extends Popup {
 
   cardId(card) {
     this._id = card._id;
-    this._card = card;
+    // this._card = card;
   }
 }

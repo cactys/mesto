@@ -10,10 +10,10 @@ const validationConfig = {
 
 // !DOM элеиенты
 // * DOM попапы
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupEditAvatar = document.querySelector('.popup_type_avatar');
-const popupAddPhoto = document.querySelector('.popup_type_add-photo');
-const popupConfirm = document.querySelector('.popup_type_confirm');
+const popupProfile = '.popup_type_profile';
+const popupEditAvatar = '.popup_type_avatar';
+const popupAddPhoto = '.popup_type_add-photo';
+const popupConfirm = '.popup_type_confirm';
 // * находим в DOM кнопку редактирования профиля
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // * находим в DOM кнопку редактирования аватара
@@ -26,7 +26,7 @@ const avatarProfile = document.querySelector('.profile__avatar');
 const buttonAddPhoto = document.querySelector('.profile__add-button');
 // * Находим в DOM элементы карточки
 const cardTemplate = '.card-template';
-const popupPhoto = document.querySelector('.popup_type_photo');
+const popupPhoto = '.popup_type_photo';
 // * объявить form || input
 // ? форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля

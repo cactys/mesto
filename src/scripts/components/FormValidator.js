@@ -57,11 +57,6 @@ export default class FormValidator {
   _setEventListeners = () => {
     this.toggleButtonState();
 
-    this._formElement.addEventListener('submit', (evt) => {
-      // ! Эта строчка отменяет стандартную отправку формы.
-      evt.preventDefault();
-    });
-
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);

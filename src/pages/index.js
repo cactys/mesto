@@ -101,11 +101,10 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
 
 // * попап подтверждения удаления карты
 const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
-  debugger;
   api
     .deletCard(cardId)
     .then(() => {
-     openConfirmDeletCard._card.handleDeleteCard();
+      cardId.handleDeleteClick();
     })
     .catch((err) => console.log(err));
 });

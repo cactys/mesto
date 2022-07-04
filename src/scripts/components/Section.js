@@ -12,8 +12,9 @@ export default class Section {
   // метод, который отвечает за отрисовку всех элементов
   renderItems(items) {
     items.reverse().forEach((item) => {
-      const element = this._renderer(item);
-      this.addItem(element);
+      // const element = this._renderer(item);
+      this._renderer(item);
+      // this.addItem(element);
     });
   }
 }

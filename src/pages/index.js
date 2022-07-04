@@ -8,18 +8,18 @@ import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import Api from '../scripts/components/Api.js';
 import {
   validationConfig,
-  popupProfile,
-  popupEditAvatar,
-  popupAddPhoto,
-  popupConfirm,
+  // popupProfile,
+  // popupEditAvatar,
+  // popupAddPhoto,
+  // popupConfirm,
   buttonEditProfile,
   buttonEditAvatar,
-  nameProfile,
-  jobProfile,
-  avatarProfile,
+  // nameProfile,
+  // jobProfile,
+  // avatarProfile,
   buttonAddPhoto,
-  cardTemplate,
-  popupPhoto,
+  // cardTemplate,
+  // popupPhoto,
   formProfile,
   nameInput,
   jobInput,
@@ -43,9 +43,13 @@ const handleCardClick = (name, link) => {
 
 // * клик по значку лайк
 const handleLikeCard = (card, isLike) => {
+  console.log(card);
+  console.log(isLike);
+
   const cardLiked = isLike ? api.putLike(card._id) : api.deleteLike(card._id);
   cardLiked
     .then(() => {
+      // card.isLiked();
       card.addLike(isLike);
     })
     .catch((err) => console.log(err));
@@ -65,7 +69,7 @@ const createCard = (data) => {
     handleCardClick,
     handleLikeCard,
     handleDeleteClick,
-    cardTemplate
+    '.card-template'
   );
   const cardElement = card.generateCard();
 
@@ -73,23 +77,24 @@ const createCard = (data) => {
 };
 
 // * отрисовка карт
-const defaultCards = new Section(createCard, '.cards');
+const defaultCards = new Section((item) => {
+  defaultCards.addItem(createCard(item));
+}, '.cards');
 
 // * информация о авторе
 const profile = new UserInfo({
-  userName: nameProfile,
-  userAbout: jobProfile,
-  userAvatar: avatarProfile,
+  userName: '.profile__title',
+  userAbout: '.profile__subtitle',
+  userAvatar: '.profile__avatar',
 });
 
 // * попап картинки
-const openPhotoPopup = new PopupWithImage(popupPhoto);
+const openPhotoPopup = new PopupWithImage('.popup_type_photo');
 
 // * попап добавление фотографии
-const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
+const openAddPhotoPopup = new PopupWithForm('.popup_type_add-photo', (data) => {
   openAddPhotoPopup.loading(true);
 
-  // debugger;
   api
     .createCard(data)
     .then((res) => {
@@ -100,17 +105,20 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
 });
 
 // * попап подтверждения удаления карты
-const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
-  api
-    .deleteCard(cardId)
-    .then(() => {
-      cardId.handleDeleteCard();
-    })
-    .catch((err) => console.log(err));
-});
+const openConfirmDeletCard = new PopupWithConfirm(
+  '.popup_type_confirm',
+  (cardId) => {
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        cardId.handleDeleteCard();
+      })
+      .catch((err) => console.log(err));
+  }
+);
 
 // * попап редактирование профиля
-const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
+const openPropfilePopup = new PopupWithForm('.popup_type_profile', (data) => {
   openPropfilePopup.loading(true);
 
   api
@@ -121,7 +129,7 @@ const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
 });
 
 // * попап изменение аватарки профиля
-const openAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
+const openAvatarPopup = new PopupWithForm('.popup_type_avatar', (data) => {
   openAvatarPopup.loading(true);
 
   api

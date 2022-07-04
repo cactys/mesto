@@ -34,6 +34,7 @@ export default class Card {
     this._cardImage = this._element.querySelector('.card__image');
     this._cardTitle = this._element.querySelector('.card__name');
     this._buttonLike = this._element.querySelector('.card__like-button');
+    this._buttonLikeActive = 'card__like-button_active';
     this._likeCounter = this._element.querySelector('.card__like-count');
     this._buttonDelete = this._element.querySelector('.card__trach-icon');
     this._cardImage.src = this._image;
@@ -45,23 +46,46 @@ export default class Card {
       this._buttonDelete.remove();
     }
 
-    if (this._likes.some((likeUser) => likeUser._id === this._userId)) {
-      this._buttonLike.classList.add('card__like-button_active');
+    if (this.isLiked()) {
+      this._buttonLike.classList.add(this._buttonLikeActive);
     }
-    
+
+    // this._updateLikesView();
     this._setEventListeners();
     return this._element;
   }
 
+  isLiked() {
+    return this._likes.some((like) => like._id === this._userId);
+  }
+
+  // _updateLikesView() {
+  //   this._likeCounter.textContent = this._countLike;
+  //   if (this.isLiked()) {
+  //     this._buttonLike.classList.add(this._buttonLikeActive);
+  //   } else {
+  //     this._buttonLike.classList.remove(this._buttonLikeActive);
+  //   }
+  // }
+
+  // setLikes(likes) {
+  //   this._likes = likes;
+  //   this._updateLikesView();
+  // }
+
   addLike(isLike) {
-    if (isLike) {
+    if (this.isLiked(isLike)) {
+      // debugger;
       this._buttonLike.classList.add('card__like-button_active');
-      this._likeCounter.textContent = String(this._countLike + 1);
-      this._countLike += 1;
+      // this._likeCounter.textContent = String(this._countLike + 1);
+      // this._countLike += 1;
+      this._likeCounter.textContent = this._countLike;
     } else {
+      // debugger;
       this._buttonLike.classList.remove('card__like-button_active');
-      this._likeCounter.textContent = String(this._countLike - 1);
-      this._countLike -= 1;
+      // this._likeCounter.textContent = String(this._countLike - 1);
+      // this._countLike -= 1;
+      this._likeCounter.textContent = this._countLike;
     }
   }
 
@@ -79,10 +103,7 @@ export default class Card {
       this._handleDeleteClick(this);
     }); // удалить карточку
     this._buttonLike.addEventListener('click', () => {
-      this._handleLikeCard(
-        this,
-        this._buttonLike.classList.toggle('card__like-button_active')
-      );
+      this._handleLikeCard(this);
     }); // лайкнуть карточку
   }
 }

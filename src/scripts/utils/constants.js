@@ -10,23 +10,23 @@ const validationConfig = {
 
 // !DOM элеиенты
 // * DOM попапы
-const popupProfile = '.popup_type_profile';
-const popupEditAvatar = '.popup_type_avatar';
-const popupAddPhoto = '.popup_type_add-photo';
-const popupConfirm = '.popup_type_confirm';
+// const popupProfile = '.popup_type_profile';
+// const popupEditAvatar = '.popup_type_avatar';
+// const popupAddPhoto = '.popup_type_add-photo';
+// const popupConfirm = '.popup_type_confirm';
 // * находим в DOM кнопку редактирования профиля
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // * находим в DOM кнопку редактирования аватара
 const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
 // ? поля в DOM имя и об авторе
-const nameProfile = document.querySelector('.profile__title');
-const jobProfile = document.querySelector('.profile__subtitle');
-const avatarProfile = document.querySelector('.profile__avatar');
+// const nameProfile = '.profile__title';
+// const jobProfile = '.profile__subtitle';
+// const avatarProfile = '.profile__avatar';
 // * находим в DOM кнопку добавления фотографии
 const buttonAddPhoto = document.querySelector('.profile__add-button');
 // * Находим в DOM элементы карточки
-const cardTemplate = '.card-template';
-const popupPhoto = '.popup_type_photo';
+// const cardTemplate = '.card-template';
+// const popupPhoto = '.popup_type_photo';
 // * объявить form || input
 // ? форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
@@ -47,18 +47,18 @@ const API_CONFIG = {
 
 export {
   validationConfig,
-  popupProfile,
-  popupEditAvatar,
-  popupAddPhoto,
-  popupConfirm,
+  // popupProfile,
+  // popupEditAvatar,
+  // popupAddPhoto,
+  // popupConfirm,
   buttonEditProfile,
   buttonEditAvatar,
-  nameProfile,
-  jobProfile,
-  avatarProfile,
+  // nameProfile,
+  // jobProfile,
+  // avatarProfile,
   buttonAddPhoto,
-  cardTemplate,
-  popupPhoto,
+  // cardTemplate,
+  // popupPhoto,
   formProfile,
   nameInput,
   jobInput,

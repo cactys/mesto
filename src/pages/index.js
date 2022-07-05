@@ -83,6 +83,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add-photo', (data) => {
     .createCard(data)
     .then((res) => {
       renderCards.addItem(createCard(res));
+      popupAddCard.close();
     })
     .catch((err) => console.log(err))
     .finally(() => popupAddCard.loading(false));
@@ -95,6 +96,7 @@ const popupConfirmDeleteCard = new PopupWithConfirm(
       .deletCard(cardId)
       .then(() => {
         popupConfirmDeleteCard.delete();
+        popupConfirmDeleteCard.close();
       })
       .catch((err) => console.log(err));
   }
@@ -111,9 +113,13 @@ const profile = new UserInfo({
 const popupProfileEdit = new PopupWithForm('.popup_type_profile', (data) => {
   popupProfileEdit.loading(true);
 
+  // debugger;
   api
     .editUserInfo(data)
-    .then((res) => profile.setUserInfo(res))
+    .then((res) => {
+      profile.setUserInfo(res);
+      popupProfileEdit.close();
+    })
     .catch((err) => console.log(err))
     .finally(() => popupProfileEdit.loading(false));
 });
@@ -123,7 +129,10 @@ const popupAvatarEdit = new PopupWithForm('.popup_type_avatar', (data) => {
 
   api
     .editAvatar(data)
-    .then((res) => profile.setUserInfo(res))
+    .then((res) => {
+      profile.setUserInfo(res);
+      popupAvatarEdit.close();
+    })
     .catch((err) => console.log(err))
     .finally(() => popupAvatarEdit.loading(false));
 });

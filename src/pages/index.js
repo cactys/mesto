@@ -37,7 +37,7 @@ const validateFormAvatar = new FormValidator(validationConfig, formAvatar);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 
 // * клик по картинке карты
-const handleCardClick = (name, link) => {
+const handleClickCard = (name, link) => {
   openPhotoPopup.open(name, link);
 };
 
@@ -50,13 +50,14 @@ const handleLikeCard = (card, isLike) => {
   cardLiked
     .then(() => {
       // card.isLiked();
-      card.addLike(isLike);
+      // debugger;
+      return card.setLikes(isLike);
     })
     .catch((err) => console.log(err));
 };
 
 // * клик по иконке удаления
-const handleDeleteClick = (card) => {
+const handleClickDelete = (card) => {
   openConfirmDeletCard.open();
   openConfirmDeletCard.cardId(card);
 };
@@ -64,11 +65,18 @@ const handleDeleteClick = (card) => {
 // * создать карточку
 const createCard = (data) => {
   const card = new Card(
-    data,
+    {
+      data,
+      handle: {
+        handleLikeCard: () => {
+          
+        },
+      },
+    },
     profile._id,
-    handleCardClick,
+    handleClickCard,
     handleLikeCard,
-    handleDeleteClick,
+    handleClickDelete,
     '.card-template'
   );
   const cardElement = card.generateCard();
@@ -111,7 +119,8 @@ const openConfirmDeletCard = new PopupWithConfirm(
     api
       .deleteCard(cardId)
       .then(() => {
-        cardId.handleDeleteCard();
+        debugger;
+        openConfirmDeletCard;
       })
       .catch((err) => console.log(err));
   }

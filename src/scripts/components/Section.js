@@ -14,8 +14,7 @@ export default class Section {
   renderItems(items) {
     // debugger;
     items.reverse().forEach((item) => {
-      const element = this._renderer(item);
-      this.addItem(element);
+      this._renderer(item);
     });
   }
 }

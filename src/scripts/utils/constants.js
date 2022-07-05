@@ -18,10 +18,6 @@ const popupConfirm = document.querySelector('.popup_type_confirm');
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // * находим в DOM кнопку редактирования аватара
 const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
-// ? поля в DOM имя и об авторе
-const nameProfile = document.querySelector('.profile__title');
-const jobProfile = document.querySelector('.profile__subtitle');
-const avatarProfile = document.querySelector('.profile__avatar');
 // * находим в DOM кнопку добавления фотографии
 const buttonAddPhoto = document.querySelector('.profile__add-button');
 // * Находим в DOM элементы карточки
@@ -53,9 +49,6 @@ export {
   popupConfirm,
   buttonEditProfile,
   buttonEditAvatar,
-  nameProfile,
-  jobProfile,
-  avatarProfile,
   buttonAddPhoto,
   cardTemplate,
   popupPhoto,

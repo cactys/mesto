@@ -67,7 +67,6 @@ export default class Card {
 
   handleDeleteCard = () => {
     // удалить карточку
-    console.log('DELETE');
     this._element.remove();
     this._element = null;
   };

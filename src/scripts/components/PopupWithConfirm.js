@@ -18,7 +18,8 @@ export default class PopupWithConfirm extends Popup {
   }
 
   cardId(card) {
+    console.log(card);
     this._id = card._id;
-    this._card = card;
+    this.delete = card.handleDeleteCard;
   }
 }

@@ -8,15 +8,15 @@ import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import Api from '../scripts/components/Api.js';
 import {
   validationConfig,
-  popupProfile,
-  popupEditAvatar,
-  popupAddPhoto,
-  popupConfirm,
+  // popupProfileEdit,
+  // popupEditAvatar,
+  // popupAddPhoto,
+  // popupConfirm,
   buttonEditProfile,
   buttonEditAvatar,
   buttonAddPhoto,
   cardTemplate,
-  popupPhoto,
+  // popupPhoto,
   formProfile,
   nameInput,
   jobInput,
@@ -34,7 +34,7 @@ const validateFormAvatar = new FormValidator(validationConfig, formAvatar);
 const validateFormCard = new FormValidator(validationConfig, formPhoto);
 
 const handleCardClick = (name, link) => {
-  openPhotoPopup.open(name, link);
+  popupPhoto.open(name, link);
 };
 
 const handleLikeCard = (card, isLike) => {
@@ -47,8 +47,8 @@ const handleLikeCard = (card, isLike) => {
 };
 
 const handleDeleteClick = (card) => {
-  openConfirmDeletCard.open();
-  openConfirmDeletCard.cardId(card);
+  popupConfirmDeleteCard.open();
+  popupConfirmDeleteCard.cardId(card);
 };
 
 // * создать карточку
@@ -67,37 +67,34 @@ const createCard = (data) => {
 };
 
 // * отрисовка карт
-const defaultCards = new Section((item) => {
-  defaultCards.addItem(createCard(item));
+const renderCards = new Section((item) => {
+  renderCards.addItem(createCard(item));
 }, '.cards');
 
 // * попап картинки
-const openPhotoPopup = new PopupWithImage('.popup_type_photo');
+const popupPhoto = new PopupWithImage('.popup_type_photo');
 
 // * попап добавление фотографии
-const openAddPhotoPopup = new PopupWithForm('.popup_type_add-photo', (data) => {
-  openAddPhotoPopup.loading(true);
+const popupAddCard = new PopupWithForm('.popup_type_add-photo', (data) => {
+  popupAddCard.loading(true);
 
   // debugger;
   api
     .createCard(data)
     .then((res) => {
-      defaultCards.addItem(createCard(res));
+      renderCards.addItem(createCard(res));
     })
     .catch((err) => console.log(err))
-    .finally(() => openAddPhotoPopup.loading(false));
+    .finally(() => popupAddCard.loading(false));
 });
 
-const openConfirmDeletCard = new PopupWithConfirm(
+const popupConfirmDeleteCard = new PopupWithConfirm(
   '.popup_type_confirm',
   (cardId) => {
-    console.log(`cardId = ${cardId}`);
     api
       .deletCard(cardId)
-      .then((res) => {
-        console.log(`res = ${res}`)
-        console.log(`openConfirmDeletCard = ${openConfirmDeletCard}`);
-        openConfirmDeletCard.handleDeleteCard(cardId);
+      .then(() => {
+        popupConfirmDeleteCard.delete();
       })
       .catch((err) => console.log(err));
   }
@@ -111,24 +108,24 @@ const profile = new UserInfo({
 });
 
 // * попап редактирование профиля
-const openPropfilePopup = new PopupWithForm('.popup_type_profile', (data) => {
-  openPropfilePopup.loading(true);
+const popupProfileEdit = new PopupWithForm('.popup_type_profile', (data) => {
+  popupProfileEdit.loading(true);
 
   api
     .editUserInfo(data)
     .then((res) => profile.setUserInfo(res))
     .catch((err) => console.log(err))
-    .finally(() => openPropfilePopup.loading(false));
+    .finally(() => popupProfileEdit.loading(false));
 });
 
-const openAvatarPopup = new PopupWithForm('.popup_type_avatar', (data) => {
-  openAvatarPopup.loading(true);
+const popupAvatarEdit = new PopupWithForm('.popup_type_avatar', (data) => {
+  popupAvatarEdit.loading(true);
 
   api
     .editAvatar(data)
     .then((res) => profile.setUserInfo(res))
     .catch((err) => console.log(err))
-    .finally(() => openAvatarPopup.loading(false));
+    .finally(() => popupAvatarEdit.loading(false));
 });
 
 // ? события
@@ -140,17 +137,17 @@ buttonEditProfile.addEventListener('click', () => {
   jobInput.value = getProfile.about;
 
   validateFormProfile.resetValidation();
-  openPropfilePopup.open();
+  popupProfileEdit.open();
 });
 // ! popup редактировать аватара
 buttonEditAvatar.addEventListener('click', () => {
   validateFormAvatar.resetValidation();
-  openAvatarPopup.open();
+  popupAvatarEdit.open();
 });
 // ! popup добавить фотографию
 buttonAddPhoto.addEventListener('click', () => {
   validateFormCard.resetValidation();
-  openAddPhotoPopup.open();
+  popupAddCard.open();
 });
 
 api
@@ -158,7 +155,7 @@ api
   .then(([userData, cardsData]) => {
     profile.setUserInfo(userData);
     // debugger;
-    defaultCards.renderItems(cardsData);
+    renderCards.renderItems(cardsData);
   })
   .catch((err) => console.log(err));
 
@@ -167,8 +164,8 @@ validateFormCard.enableValidation();
 validateFormProfile.enableValidation();
 validateFormAvatar.enableValidation();
 // * открыть попап
-openAddPhotoPopup.setEventListeners();
-openConfirmDeletCard.setEventListeners();
-openPhotoPopup.setEventListeners();
-openPropfilePopup.setEventListeners();
-openAvatarPopup.setEventListeners();
+popupAddCard.setEventListeners();
+popupConfirmDeleteCard.setEventListeners();
+popupPhoto.setEventListeners();
+popupProfileEdit.setEventListeners();
+popupAvatarEdit.setEventListeners();

@@ -47,14 +47,14 @@
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__set">
             <label class="form__field">
-              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" id="name-input"
+              <input type="text" placeholder="Ваше имя" class="form__input form__input_profile-name" id="edit-name"
                 name="name" minlength="2" maxlength="40" required />
-              <span class="form__input-error name-input-error"></span>
+              <span class="form__input-error edit-name-error"></span>
             </label>
             <label class="form__field">
               <input type="text" placeholder="Чем занимаетесь?" class="form__input form__input_profile-job"
-                id="job-input" name="job" minlength="2" maxlength="200" required />
-              <span class="form__input-error job-input-error"></span>
+                id="edit-job" name="job" minlength="2" maxlength="200" required />
+              <span class="form__input-error edit-job-error"></span>
             </label>
           </fieldset>
           <button type="submit" class="form__submit">Сохранить</button>
@@ -70,8 +70,8 @@
           <fieldset class="form__set">
             <label class="form__field">
               <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_avatar-src"
-                id="src-input" name="src" required />
-              <span class="form__input-error src-input-error"></span>
+                id="avatar-link" name="src" required />
+              <span class="form__input-error avatar-link-error"></span>
             </label>
           </fieldset>
           <button type="submit" class="form__submit">Сохранить</button>
@@ -96,14 +96,14 @@
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__set">
             <label class="form__field">
-              <input type="text" placeholder="Название" class="form__input form__input_photo-title" id="title-input"
+              <input type="text" placeholder="Название" class="form__input form__input_photo-title" id="card-name"
                 name="title" required minlength="2" maxlength="40" />
-              <span class="form__input-error title-input-error"></span>
+              <span class="form__input-error card-name-error"></span>
             </label>
             <label class="form__field">
               <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src"
-                id="src-input" name="src" required />
-              <span class="form__input-error src-input-error"></span>
+                id="card-link" name="src" required />
+              <span class="form__input-error card-link-error"></span>
             </label>
           </fieldset>
           <button type="submit" class="form__submit">Создать</button>

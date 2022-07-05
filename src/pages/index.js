@@ -101,9 +101,9 @@ const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
 
 // * информация о авторе
 const profile = new UserInfo({
-  userName: nameProfile,
-  userAbout: jobProfile,
-  userAvatar: avatarProfile,
+  userName: '.profile__title',
+  userAbout: '.profile__subtitle',
+  userAvatar: '.profile__avatar',
 });
 
 // * попап редактирование профиля

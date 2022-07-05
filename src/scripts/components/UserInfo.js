@@ -1,8 +1,8 @@
 export default class UserInfo {
-  constructor({ userName, userAbout, userAvatar}) {
-    this._userName = userName;
-    this._userAbout = userAbout;
-    this._userAvatar = userAvatar;
+  constructor(userInfo) {
+    this._userName = document.querySelector(userInfo.userName);
+    this._userAbout = document.querySelector(userInfo.userAbout);
+    this._userAvatar = document.querySelector(userInfo.userAvatar);
   }
 
   // возвращает объект с данными пользователя
@@ -11,7 +11,6 @@ export default class UserInfo {
     return {
       name: this._userName.textContent,
       about: this._userAbout.textContent,
-      avatar: this._userAvatar.src,
     };
   }
 

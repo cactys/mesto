@@ -3,8 +3,8 @@ import Popup from './Popup.js';
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._imagePhoto = document.querySelector('.photo-container__photo');
-    this._imageTitle = document.querySelector('.photo-container__photo-title');
+    this._imagePhoto = this._popup.querySelector('.photo-container__photo');
+    this._imageTitle = this._popup.querySelector('.photo-container__photo-title');
   }
 
   // перезаписывает родительский метод open

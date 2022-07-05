@@ -67,7 +67,9 @@ const createCard = (data) => {
 };
 
 // * отрисовка карт
-const defaultCards = new Section(createCard, '.cards');
+const defaultCards = new Section((item) => {
+  defaultCards.addItem(createCard(item));
+}, '.cards');
 
 // * попап картинки
 const openPhotoPopup = new PopupWithImage(popupPhoto);
@@ -91,7 +93,7 @@ const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
   api
     .deletCard(cardId)
     .then(() => {
-     openConfirmDeletCard._card.handleDeleteCard();
+      openConfirmDeletCard._card.handleDeleteCard();
     })
     .catch((err) => console.log(err));
 });

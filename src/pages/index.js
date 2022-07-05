@@ -72,10 +72,10 @@ const defaultCards = new Section((item) => {
 }, '.cards');
 
 // * попап картинки
-const openPhotoPopup = new PopupWithImage(popupPhoto);
+const openPhotoPopup = new PopupWithImage('.popup_type_photo');
 
 // * попап добавление фотографии
-const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
+const openAddPhotoPopup = new PopupWithForm('.popup_type_add-photo', (data) => {
   openAddPhotoPopup.loading(true);
 
   // debugger;
@@ -88,15 +88,20 @@ const openAddPhotoPopup = new PopupWithForm(popupAddPhoto, (data) => {
     .finally(() => openAddPhotoPopup.loading(false));
 });
 
-const openConfirmDeletCard = new PopupWithConfirm(popupConfirm, (cardId) => {
-  debugger;
-  api
-    .deletCard(cardId)
-    .then(() => {
-      openConfirmDeletCard._card.handleDeleteCard();
-    })
-    .catch((err) => console.log(err));
-});
+const openConfirmDeletCard = new PopupWithConfirm(
+  '.popup_type_confirm',
+  (cardId) => {
+    console.log(`cardId = ${cardId}`);
+    api
+      .deletCard(cardId)
+      .then((res) => {
+        console.log(`res = ${res}`)
+        console.log(`openConfirmDeletCard = ${openConfirmDeletCard}`);
+        openConfirmDeletCard.handleDeleteCard(cardId);
+      })
+      .catch((err) => console.log(err));
+  }
+);
 
 // * информация о авторе
 const profile = new UserInfo({
@@ -106,7 +111,7 @@ const profile = new UserInfo({
 });
 
 // * попап редактирование профиля
-const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
+const openPropfilePopup = new PopupWithForm('.popup_type_profile', (data) => {
   openPropfilePopup.loading(true);
 
   api
@@ -116,7 +121,7 @@ const openPropfilePopup = new PopupWithForm(popupProfile, (data) => {
     .finally(() => openPropfilePopup.loading(false));
 });
 
-const openAvatarPopup = new PopupWithForm(popupEditAvatar, (data) => {
+const openAvatarPopup = new PopupWithForm('.popup_type_avatar', (data) => {
   openAvatarPopup.loading(true);
 
   api

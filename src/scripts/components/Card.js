@@ -48,7 +48,7 @@ export default class Card {
     if (this._likes.some((likeUser) => likeUser._id === this._userId)) {
       this._buttonLike.classList.add('card__like-button_active');
     }
-    
+
     this._setEventListeners();
     return this._element;
   }
@@ -67,6 +67,7 @@ export default class Card {
 
   handleDeleteCard = () => {
     // удалить карточку
+    console.log('DELETE');
     this._element.remove();
     this._element = null;
   };

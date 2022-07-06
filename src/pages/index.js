@@ -8,15 +8,10 @@ import PopupWithConfirm from '../scripts/components/PopupWithConfirm.js';
 import Api from '../scripts/components/Api.js';
 import {
   validationConfig,
-  // popupProfileEdit,
-  // popupEditAvatar,
-  // popupAddPhoto,
-  // popupConfirm,
   buttonEditProfile,
   buttonEditAvatar,
   buttonAddPhoto,
   cardTemplate,
-  // popupPhoto,
   formProfile,
   nameInput,
   jobInput,
@@ -37,24 +32,30 @@ const handleCardClick = (name, link) => {
   popupPhoto.open(name, link);
 };
 
-const handleLikeCard = (card, isLike) => {
-  // debugger;
-  const cardLiked = isLike ? api.putLike(card._id) : api.deletLike(card._id);
+const handleLikeCard = (card, cardId) => {
+  const cardLiked = card.isLiked()
+    ? api.deletLike(cardId)
+    : api.putLike(cardId);
   cardLiked
     .then((res) => {
-      // debugger;
-    //  res._id;
-
-      card.setLikes(isLike);
-      // console.log(isLike);
-      // card.setLikes(isLike);
-      // card.isLiked(isLike);
-      // res//   .querySelector('.card__like-button')
-      // .classList
-      //   .toggle('card__like-button_active');
+      card.setLikes(res.likes);
     })
     .catch((err) => console.log(err));
-  // debugger;
+  // if (card.isLiked()) {
+  //   api
+  //     .deletLike(cardId)
+  //     .then((res) => {
+  //       card.setLikes(res.likes);
+  //     })
+  //     .catch((err) => console.log(err));
+  // } else {
+  //   api
+  //     .putLike(cardId)
+  //     .then((res) => {
+  //       card.setLikes(res.likes);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 };
 
 const handleDeleteClick = (card) => {
@@ -89,7 +90,6 @@ const popupPhoto = new PopupWithImage('.popup_type_photo');
 const popupAddCard = new PopupWithForm('.popup_type_add-photo', (data) => {
   popupAddCard.loading(true);
 
-  // debugger;
   api
     .createCard(data)
     .then((res) => {
@@ -124,7 +124,6 @@ const profile = new UserInfo({
 const popupProfileEdit = new PopupWithForm('.popup_type_profile', (data) => {
   popupProfileEdit.loading(true);
 
-  // debugger;
   api
     .editUserInfo(data)
     .then((res) => {
@@ -174,7 +173,6 @@ api
   .getAllPromise()
   .then(([userData, cardsData]) => {
     profile.setUserInfo(userData);
-    // debugger;
     renderCards.renderItems(cardsData);
   })
   .catch((err) => console.log(err));

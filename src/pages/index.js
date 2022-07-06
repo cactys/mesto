@@ -66,19 +66,12 @@ const handleDeleteClick = (card) => {
 // * создать карточку
 const createCard = (data) => {
   const card = new Card(
-    {
-      data,
-      handle: {
-        handleLikeCard: () => {
-          
-        },
-      },
-    },
+    data,
     profile._id,
-    handleClickCard,
+    handleCardClick,
     handleLikeCard,
-    handleClickDelete,
-    '.card-template'
+    handleDeleteClick,
+    cardTemplate
   );
   const cardElement = card.generateCard();
 
@@ -176,7 +169,6 @@ buttonAddPhoto.addEventListener('click', () => {
   popupAddCard.open();
 });
 
-// ? Promise.all
 api
   .getAllPromise()
   .then(([userData, cardsData]) => {

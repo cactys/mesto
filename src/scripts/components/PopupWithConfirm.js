@@ -18,10 +18,6 @@ export default class PopupWithConfirm extends Popup {
 
   cardId(card) {
     this._id = card._id;
-<<<<<<< HEAD
-    // this._card = card;
-=======
     this.delete = card.handleDeleteCard;
->>>>>>> develop
   }
 }

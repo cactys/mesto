@@ -1,22 +1,21 @@
 export default class Card {
   constructor(
-    { data, handle },
-    // { name, link, likes, _id, owner },
+    { name, link, likes, _id, owner },
     userId,
-    // handleClickCard,
-    // handleLikeCard,
-    // handleClickDelete,
+    handleCardClick,
+    handleLikeCard,
+    handleDeleteClick,
     cardSelector
   ) {
-    this._title = data.name;
-    this._image = data.link;
-    this._likes = data.likes;
-    this._id = data._id;
-    this._owner = data.owner;
+    this._title = name;
+    this._image = link;
+    this._likes = likes;
+    this._id = _id;
+    this._owner = owner;
     this._userId = userId;
-    this._handleClickCard = handle.handleClickCard;
-    this._handleLikeCard = handle.handleLikeCard;
-    this._handleClickDelete = handle.handleClickDelete;
+    this._handleCardClick = handleCardClick;
+    this._handleLikeCard = handleLikeCard;
+    this._handleDeleteClick = handleDeleteClick;
     this._countLike = this._likes.length;
     this._cardSelector = cardSelector;
   }
@@ -35,7 +34,6 @@ export default class Card {
     this._cardImage = this._element.querySelector('.card__image');
     this._cardTitle = this._element.querySelector('.card__name');
     this._buttonLike = this._element.querySelector('.card__like-button');
-    this._buttonLikeActive = 'card__like-button_active';
     this._likeCounter = this._element.querySelector('.card__like-count');
     this._buttonDelete = this._element.querySelector('.card__trach-icon');
     this._cardImage.src = this._image;
@@ -83,10 +81,10 @@ export default class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener('click', () => {
-      this._handleClickCard(this._title, this._image);
+      this._handleCardClick(this._title, this._image);
     }); // открыть фотографию карточки
     this._buttonDelete.addEventListener('click', () => {
-      this._handleClickDelete(this);
+      this._handleDeleteClick(this);
     }); // удалить карточку
     this._buttonLike.addEventListener('click', () => {
       this._handleLikeCard(this, this._id);

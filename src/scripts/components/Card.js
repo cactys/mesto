@@ -41,53 +41,18 @@ export default class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._title;
     this._cardTitle.textContent = this._title;
-<<<<<<< HEAD
-    // this._likeCounter.textContent = this._likes.length;
-=======
->>>>>>> develop
 
     if (this._owner._id !== this._userId) {
       this._buttonDelete.remove();
     }
 
-<<<<<<< HEAD
-    // if (this._likes.some((like) => like._id === this._userId)) {
-    //   this._buttonLike.classList.add(this._buttonLikeActive);
-    // }
-=======
     this.setLikes(this._likes);
->>>>>>> develop
 
     this._updateLikesView();
     this._setEventListeners();
     return this._element;
   }
 
-<<<<<<< HEAD
-  _updateLikesView() {
-    this._likeCounter.textContent = this._likes.length;
-    if (this.isLiked()) {
-      this._buttonLike.classList.add(this._buttonLikeActive);
-    } else {
-      this._buttonLike.classList.remove(this._buttonLikeActive);
-    }
-  }
-
-  isLiked() {
-    return this._likes.some((like) => like._id === this._userId);
-  }
-
-  setLikes(likes) {
-    // debugger;
-    this._handleLiked();
-    this._likeCounter.textContent = likes;
-    // this._likes = likes;
-    // this._updateLikesView();
-  }
-
-  _handleLiked() {
-    this._buttonLike.classList.toggle(this._buttonLikeActive);
-=======
   isLiked() {
     return this._likes.some((like) => like._id === this._userId);
   }
@@ -108,7 +73,6 @@ export default class Card {
 
   toggleButton() {
     return this._buttonLike.classList.toggle(this._buttonLikeActive);
->>>>>>> develop
   }
 
   handleDeleteCard = () => {
@@ -124,13 +88,8 @@ export default class Card {
     this._buttonDelete.addEventListener('click', () => {
       this._handleClickDelete(this);
     }); // удалить карточку
-<<<<<<< HEAD
-    this._buttonLike.addEventListener('click', this._handleLikeCard);
-    // лайкнуть карточку
-=======
     this._buttonLike.addEventListener('click', () => {
       this._handleLikeCard(this, this._id);
     }); // лайкнуть карточку
->>>>>>> develop
   }
 }

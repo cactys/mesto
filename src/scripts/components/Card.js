@@ -69,10 +69,6 @@ export default class Card {
     this._updateLikesView();
   }
 
-  toggleButton() {
-    return this._buttonLike.classList.toggle(this._buttonLikeActive);
-  }
-
   handleDeleteCard = () => {
     // удалить карточку
     this._element.remove();

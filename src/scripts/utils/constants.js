@@ -9,15 +9,19 @@ const validationConfig = {
 };
 
 // !DOM элеиенты
+<<<<<<< HEAD
 // * DOM попапы
 // const popupProfile = '.popup_type_profile';
 // const popupEditAvatar = '.popup_type_avatar';
 // const popupAddPhoto = '.popup_type_add-photo';
 // const popupConfirm = '.popup_type_confirm';
+=======
+>>>>>>> develop
 // * находим в DOM кнопку редактирования профиля
 const buttonEditProfile = document.querySelector('.profile__edit-button');
 // * находим в DOM кнопку редактирования аватара
 const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
+<<<<<<< HEAD
 // ? поля в DOM имя и об авторе
 // const nameProfile = '.profile__title';
 // const jobProfile = '.profile__subtitle';
@@ -27,6 +31,12 @@ const buttonAddPhoto = document.querySelector('.profile__add-button');
 // * Находим в DOM элементы карточки
 // const cardTemplate = '.card-template';
 // const popupPhoto = '.popup_type_photo';
+=======
+// * находим в DOM кнопку добавления фотографии
+const buttonAddPhoto = document.querySelector('.profile__add-button');
+// * Находим в DOM элементы карточки
+const cardTemplate = '.card-template';
+>>>>>>> develop
 // * объявить form || input
 // ? форма редактирование профиля
 const formProfile = document.querySelector('.form_edit-profile'); // форма редактирования профиля
@@ -47,6 +57,7 @@ const API_CONFIG = {
 
 export {
   validationConfig,
+<<<<<<< HEAD
   // popupProfile,
   // popupEditAvatar,
   // popupAddPhoto,
@@ -59,6 +70,12 @@ export {
   buttonAddPhoto,
   // cardTemplate,
   // popupPhoto,
+=======
+  buttonEditProfile,
+  buttonEditAvatar,
+  buttonAddPhoto,
+  cardTemplate,
+>>>>>>> develop
   formProfile,
   nameInput,
   jobInput,

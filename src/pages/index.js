@@ -41,14 +41,17 @@ const handleLikeCard = (card, isLike) => {
   // debugger;
   const cardLiked = isLike ? api.putLike(card._id) : api.deletLike(card._id);
   cardLiked
-    .then(() => {
-      // card.addLike(isLike);
-      // console.log(isLike);
+    .then((res) => {
+      // debugger;
+    //  res._id;
+
       card.setLikes(isLike);
+      // console.log(isLike);
+      // card.setLikes(isLike);
       // card.isLiked(isLike);
-      // card
-      //   .querySelector('.card__like-button')
-      //   .classList.toggle('card__like-button_active');
+      // res//   .querySelector('.card__like-button')
+      // .classList
+      //   .toggle('card__like-button_active');
     })
     .catch((err) => console.log(err));
   // debugger;

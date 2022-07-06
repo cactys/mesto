@@ -56,7 +56,7 @@ export default class Card {
   }
 
   isLiked() {
-    // console.log(this.isLiked);
+    // console.log(this._likeCounter);
     return this._likes.some((like) => like._id === this._userId);
   }
 
@@ -64,12 +64,12 @@ export default class Card {
     this._likeCounter.textContent = this._countLike;
     if (this.isLiked()) {
       this._buttonLike.classList.add(this._element._buttonLikeActive);
-      this._likeCounter.textContent = String(this._countLike + 1);
-      this._countLike += 1;
+      // this._likeCounter.textContent = String(this._countLike + 1);
+      // return this._countLike += 1;
     } else {
       this._buttonLike.classList.remove(this._element._buttonLikeActive);
-      this._likeCounter.textContent = String(this._countLike - 1);
-      this._countLike -= 1;
+      // this._likeCounter.textContent = String(this._countLike - 1);
+      // return this._countLike -= 1;
     }
   }
 
@@ -104,8 +104,10 @@ export default class Card {
       this._handleDeleteClick(this);
     }); // удалить карточку
     this._buttonLike.addEventListener('click', () => {
+      // debugger;
       this._handleLikeCard(
         this,
+        // this.isLiked(this.setLikes())
         // this.setLikes(isLike)
         this._buttonLike.classList.toggle(this._buttonLikeActive)
       );

@@ -57,7 +57,7 @@ export default class Api {
     }).then(this._checkingResponse);
   }
 
-  deleteCard(cardId) {
+  deletCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
@@ -71,7 +71,7 @@ export default class Api {
     }).then(this._checkingResponse);
   }
 
-  deleteLike(id) {
+  deletLike(id) {
     return fetch(`${this._url}/cards/likes/${id}`, {
       method: 'DELETE',
       headers: this._headers,

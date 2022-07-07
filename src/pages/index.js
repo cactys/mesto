@@ -41,21 +41,6 @@ const handleLikeCard = (card, cardId) => {
       card.setLikes(res.likes);
     })
     .catch((err) => console.log(err));
-  // if (card.isLiked()) {
-  //   api
-  //     .deletLike(cardId)
-  //     .then((res) => {
-  //       card.setLikes(res.likes);
-  //     })
-  //     .catch((err) => console.log(err));
-  // } else {
-  //   api
-  //     .putLike(cardId)
-  //     .then((res) => {
-  //       card.setLikes(res.likes);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 };
 
 const handleDeleteClick = (card) => {
@@ -79,8 +64,8 @@ const createCard = (data) => {
 };
 
 // * отрисовка карт
-const renderCards = new Section((item) => {
-  renderCards.addItem(createCard(item));
+const cardRender = new Section((item) => {
+  cardRender.addItem(createCard(item));
 }, '.cards');
 
 // * попап картинки
@@ -93,7 +78,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add-photo', (data) => {
   api
     .createCard(data)
     .then((res) => {
-      renderCards.addItem(createCard(res));
+      cardRender.addItem(createCard(res));
       popupAddCard.close();
     })
     .catch((err) => console.log(err))
@@ -106,7 +91,7 @@ const popupConfirmDeleteCard = new PopupWithConfirm(
     api
       .deletCard(cardId)
       .then(() => {
-        popupConfirmDeleteCard.delete();
+        // popupConfirmDeleteCard.delete();
         popupConfirmDeleteCard.close();
       })
       .catch((err) => console.log(err));
@@ -173,7 +158,7 @@ api
   .getAllPromise()
   .then(([userData, cardsData]) => {
     profile.setUserInfo(userData);
-    renderCards.renderItems(cardsData);
+    cardRender.renderItems(cardsData);
   })
   .catch((err) => console.log(err));
 

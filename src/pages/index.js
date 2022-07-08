@@ -91,7 +91,7 @@ const popupConfirmDeleteCard = new PopupWithConfirm(
     api
       .deletCard(cardId)
       .then(() => {
-        // popupConfirmDeleteCard.delete();
+        popupConfirmDeleteCard.delete();
         popupConfirmDeleteCard.close();
       })
       .catch((err) => console.log(err));

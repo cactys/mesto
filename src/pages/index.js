@@ -45,7 +45,14 @@ const handleLikeCard = (card, cardId) => {
 
 const handleDeleteClick = (card) => {
   popupConfirmDeleteCard.open();
-  popupConfirmDeleteCard.cardId(card);
+  // popupConfirmDeleteCard.setCardId(card);
+  api
+    .deletCard(card._id)
+    .then(() => {
+      deletCard(card);
+      popupConfirmDeleteCard.close();
+    })
+    .catch((err) => console.log(err));
 };
 
 // * создать карточку
@@ -76,7 +83,7 @@ const popupAddCard = new PopupWithForm('.popup_type_add-photo', (data) => {
   popupAddCard.loading(true);
 
   api
-    .createCard(data)
+    .addCard(data)
     .then((res) => {
       cardRender.addItem(createCard(res));
       popupAddCard.close();
@@ -85,18 +92,12 @@ const popupAddCard = new PopupWithForm('.popup_type_add-photo', (data) => {
     .finally(() => popupAddCard.loading(false));
 });
 
-const popupConfirmDeleteCard = new PopupWithConfirm(
-  '.popup_type_confirm',
-  (cardId) => {
-    api
-      .deletCard(cardId)
-      .then(() => {
-        popupConfirmDeleteCard.delete();
-        popupConfirmDeleteCard.close();
-      })
-      .catch((err) => console.log(err));
-  }
-);
+const popupConfirmDeleteCard = new PopupWithConfirm('.popup_type_confirm');
+
+const deletCard = (data) => {
+  data.handleDeleteCard();
+  // console.log(data);
+};
 
 // * информация о авторе
 const profile = new UserInfo({

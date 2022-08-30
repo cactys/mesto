@@ -4,7 +4,7 @@
 ### Цель, изучить и закрепить на практике
 + Работа с макетом 'Figma'
 + HTML верстка
-+ CSS таблици стилей [Методология БЭМ](https://ru.bem.info/methodology/)
++ CSS таблицы стилей [Методология БЭМ](https://ru.bem.info/methodology/)
 + JavaScript
   - DOM
 + Webpack

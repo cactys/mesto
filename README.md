@@ -37,10 +37,24 @@
   - REST API
 + Webpack.
 
-[Ссылка на DEMO проекта](https://cactys.github.io/mesto/)
+## Установка и запуск приложения:
+
+Клонировать репозиторий:
+
+    git clone https://github.com/cactys/mesto-react.git
+
+Установить зависимости:
+
+    npm i
+
+Запустить приложение:
+
+    npm run start
+
 ---
-  - [Figma макет проектной работы №4](https://www.figma.com/file/FwbxqeyjpfDI5YAxPnpc65/JavaScript.-Sprint-4?node-id=28212%3A155)
-  - [Figma макет проектной работы №5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
-  - [Figma макет проектной работы №6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
+**[Ссылка на DEMO проекта](https://cactys.github.io/mesto/)
+  - *[Figma макет проектной работы №4](https://www.figma.com/file/FwbxqeyjpfDI5YAxPnpc65/JavaScript.-Sprint-4?node-id=28212%3A155)
+  - *[Figma макет проектной работы №5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)
+  - *[Figma макет проектной работы №6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 &copy; 2022 Mesto Russia

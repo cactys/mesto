@@ -41,7 +41,7 @@
 
 Клонировать репозиторий:
 
-    git clone https://github.com/cactys/mesto-react.git
+    git clone https://github.com/cactys/mesto.git
 
 Установить зависимости:
 

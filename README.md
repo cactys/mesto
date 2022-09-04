@@ -49,7 +49,7 @@
 
 Запустить приложение:
 
-    npm run start
+    npm run dev
 
 ---
 **[Ссылка на DEMO проекта](https://cactys.github.io/mesto/)**

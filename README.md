@@ -37,7 +37,7 @@
   - реализована валидация форм средствами JS
   - все данные хранятся на сервере, использовано стороннее API
 
-[Ссылка на gh-pages проект](https://cactys.github.io/mesto/)
+[Ссылка на DEMO проекта](https://cactys.github.io/mesto/)
 ---
   - [Figma макет проектной работы №4](https://www.figma.com/file/FwbxqeyjpfDI5YAxPnpc65/JavaScript.-Sprint-4?node-id=28212%3A155)
   - [Figma макет проектной работы №5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)

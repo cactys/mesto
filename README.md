@@ -20,7 +20,7 @@
   - все данные хранятся на сервере, использовано стороннее API
 
 ### Стэк:
-+ Работа с макетом 'Figma'
++ ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 + HTML5;
 + CSS3:
   - Flexbox;

@@ -1,8 +1,11 @@
+# Mesto 
+<p align="center"><kbd> <img width="768" height="auto" align="center" src="./DEMO.gif" alt="DEMO"> </kbd></p>
+
 **[Ссылка на DEMO проекта](https://cactys.github.io/mesto/)**
   - *[Figma макет проектной работы №4](https://www.figma.com/file/FwbxqeyjpfDI5YAxPnpc65/JavaScript.-Sprint-4?node-id=28212%3A155)*
   - *[Figma макет проектной работы №5](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=0%3A1)*
-  - *[Figma макет проектной работы №6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)*  
-# Mesto 
+  - *[Figma макет проектной работы №6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)*
+
 Интерактивная страница, на которой пользователи могут делиться фотографиями, удалять их и ставить лайки.
 
 ---
@@ -41,20 +44,20 @@
   - REST API
 + ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 
-## Установка и запуск приложения:
-
-Клонировать репозиторий:
-
+### 🔧 Инструкция:
+1. Установить [Node.js](https://nodejs.org/en/ "ссылка на сайт Node.js")
+2. Установить [Git](https://git-scm.com/ "ссылка на сайт Git")
+3. Скачайть или склонировать себе командой:
+```sh
     git clone https://github.com/cactys/mesto.git
-
-Установить зависимости:
-
+```
+4. Установите зависимости:
+```sh
     npm i
-
-Запустить приложение:
-
-    npm run dev
-
+```
+5. Запустить проект:
+```sh
+    npm run start
+```
 ---
-
 *&copy; 2022 Mesto Russia*

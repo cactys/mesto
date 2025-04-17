@@ -1,0 +1,16 @@
+.photo-container__comment-submit {
+  min-width: 100px;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.photo-container__comment-submit:hover {
+  opacity: 0.8;
+} 

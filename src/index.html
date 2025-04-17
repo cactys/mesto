@@ -13,6 +13,12 @@
   <div class="page">
     <header class="header">
       <div class="header__logo"></div>
+      <div class="header__auth">
+        <p class="header__user-email"></p>
+        <button class="header__login-button">Войти</button>
+        <button class="header__register-button">Регистрация</button>
+        <button class="header__logout-button">Выйти</button>
+      </div>
     </header>
 
     <main class="content">
@@ -33,12 +39,82 @@
         </button>
       </section>
 
+      <section class="search">
+        <div class="search__container">
+          <input type="text" class="search__input" placeholder="Поиск по названию...">
+          <button class="search__button" type="button">Искать</button>
+        </div>
+        <div class="search__filters">
+          <button class="search__filter-button search__filter-button_active" data-filter="all">Все</button>
+          <button class="search__filter-button" data-filter="favorites">Избранные</button>
+          <button class="search__filter-button" data-filter="my">Мои</button>
+        </div>
+      </section>
+
       <div class="grid">
         <ul class="cards">
           <!-- контейнер для добавления карточек -->
         </ul>
       </div>
     </main>
+
+    <!-- Попап логина -->
+    <div class="popup popup_type_login">
+      <div class="popup__container">
+        <button class="popup__close" type="button">Закрыть</button>
+        <form class="form form_login" novalidate>
+          <h2 class="form__title">Вход</h2>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input type="email" placeholder="Email" class="form__input form__input_login-email" id="login-email"
+                name="email" required />
+              <span class="form__input-error login-email-error"></span>
+            </label>
+            <label class="form__field">
+              <input type="password" placeholder="Пароль" class="form__input form__input_login-password" 
+                id="login-password" name="password" required minlength="6" />
+              <span class="form__input-error login-password-error"></span>
+            </label>
+          </fieldset>
+          <button type="submit" class="form__submit">Войти</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Попап регистрации -->
+    <div class="popup popup_type_register">
+      <div class="popup__container">
+        <button class="popup__close" type="button">Закрыть</button>
+        <form class="form form_register" novalidate>
+          <h2 class="form__title">Регистрация</h2>
+          <fieldset class="form__set">
+            <label class="form__field">
+              <input type="email" placeholder="Email" class="form__input form__input_register-email" id="register-email"
+                name="email" required />
+              <span class="form__input-error register-email-error"></span>
+            </label>
+            <label class="form__field">
+              <input type="password" placeholder="Пароль" class="form__input form__input_register-password" 
+                id="register-password" name="password" required minlength="6" />
+              <span class="form__input-error register-password-error"></span>
+            </label>
+          </fieldset>
+          <button type="submit" class="form__submit">Зарегистрироваться</button>
+          <p class="form__login-link">Уже зарегистрированы? <a href="#" class="form__link">Войти</a></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Попап статуса регистрации -->
+    <div class="popup popup_type_status">
+      <div class="popup__container">
+        <button class="popup__close" type="button">Закрыть</button>
+        <div class="popup__status">
+          <img class="popup__status-icon" />
+          <h2 class="popup__status-title"></h2>
+        </div>
+      </div>
+    </div>
 
     <div class="popup popup_type_profile">
       <div class="popup__container">
@@ -100,11 +176,15 @@
                 name="title" required minlength="2" maxlength="40" />
               <span class="form__input-error card-name-error"></span>
             </label>
-            <label class="form__field">
-              <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src"
-                id="card-link" name="src" required />
-              <span class="form__input-error card-link-error"></span>
-            </label>
+            <div class="form__photos">
+              <div class="form__photo-item">
+                <input type="url" placeholder="Ссылка на картинку" class="form__input form__input_photo-src"
+                  id="card-link" name="src" required />
+                <span class="form__input-error card-link-error"></span>
+              </div>
+              <div class="form__photos-list"></div>
+              <button type="button" class="form__add-photo-button">Добавить еще фото</button>
+            </div>
           </fieldset>
           <button type="submit" class="form__submit">Создать</button>
         </form>
@@ -117,6 +197,14 @@
         <figure class="photo-container">
           <img class="photo-container__photo" />
           <figcaption class="photo-container__photo-title"></figcaption>
+          <div class="photo-container__comments">
+            <h3 class="photo-container__comments-title">Комментарии</h3>
+            <ul class="photo-container__comments-list"></ul>
+            <form class="photo-container__comment-form">
+              <input type="text" class="photo-container__comment-input" placeholder="Добавить комментарий..." required>
+              <button type="submit" class="photo-container__comment-submit">Отправить</button>
+            </form>
+          </div>
         </figure>
       </div>
     </div>
@@ -129,6 +217,7 @@
   <template class="card-template">
     <li class="card">
       <button class="card__trach-icon" type="button">Удалить</button>
+      <button class="card__favorite-button" type="button">В избранное</button>
       <img class="card__image" />
       <div class="card__description">
         <h3 class="card__name"></h3>
@@ -136,6 +225,20 @@
           <button class="card__like-button" type="button">Нравится</button>
           <p class="card__like-count"></p>
         </div>
+      </div>
+    </li>
+  </template>
+
+  <!-- Шаблон комментария -->
+  <template class="comment-template">
+    <li class="comment">
+      <div class="comment__avatar"></div>
+      <div class="comment__content">
+        <div class="comment__header">
+          <h4 class="comment__author"></h4>
+          <span class="comment__date"></span>
+        </div>
+        <p class="comment__text"></p>
       </div>
     </li>
   </template>

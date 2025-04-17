@@ -6,7 +6,12 @@
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/header/header.css);
-@import url(../blocks/header/__logo/header__logo.css );
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/__auth/header__auth.css);
+@import url(../blocks/header/__login-button/header__login-button.css);
+@import url(../blocks/header/__register-button/header__register-button.css);
+@import url(../blocks/header/__logout-button/header__logout-button.css);
+@import url(../blocks/header/__user-email/header__user-email.css);
 
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__data/profile__data.css);
@@ -17,6 +22,14 @@
 @import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
+
+@import url(../blocks/search/search.css);
+@import url(../blocks/search/__container/search__container.css);
+@import url(../blocks/search/__input/search__input.css);
+@import url(../blocks/search/__button/search__button.css);
+@import url(../blocks/search/__filters/search__filters.css);
+@import url(../blocks/search/__filter-button/search__filter-button.css);
+@import url(../blocks/search/__filter-button/_active/search__filter-button_active.css);
 
 @import url(../blocks/grid/grid.css);
 @import url(../blocks/cards/cards.css);
@@ -29,12 +42,17 @@
 @import url(../blocks/card/__like-count/card__like-count.css);
 @import url(../blocks/card/__like-button/card__like-button.css);
 @import url(../blocks/card/__like-button/_active/card__like-button_active.css);
+@import url(../blocks/card/__favorite-button/card__favorite-button.css);
+@import url(../blocks/card/__favorite-button/_active/card__favorite-button_active.css);
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_type_photo/popup_type_photo.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/popup/__status/popup__status.css);
+@import url(../blocks/popup/__status-icon/popup__status-icon.css);
+@import url(../blocks/popup/__status-title/popup__status-title.css);
 
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__set/form__set.css);
@@ -45,10 +63,34 @@
 @import url(../blocks/form/__submit/_disabled/form__submit_disabled.css);
 @import url(../blocks/form/__input-error/form__input-error.css);
 @import url(../blocks/form/__input-error/_active/form__input-error_active.css);
+@import url(../blocks/form/__photos/form__photos.css);
+@import url(../blocks/form/__photos-list/form__photos-list.css);
+@import url(../blocks/form/__photo-item/form__photo-item.css);
+@import url(../blocks/form/__add-photo-button/form__add-photo-button.css);
+@import url(../blocks/form/__remove-photo-button/form__remove-photo-button.css);
 
 @import url(../blocks/photo-container/photo-container.css);
 @import url(../blocks/photo-container/__photo/photo-container__photo.css);
 @import url(../blocks/photo-container/__photo-title/photo-container__photo-title.css);
+@import url(../blocks/photo-container/__comments/photo-container__comments.css);
+@import url(../blocks/photo-container/__comments-title/photo-container__comments-title.css);
+@import url(../blocks/photo-container/__comments-list/photo-container__comments-list.css);
+@import url(../blocks/photo-container/__comment-form/photo-container__comment-form.css);
+@import url(../blocks/photo-container/__comment-input/photo-container__comment-input.css);
+@import url(../blocks/photo-container/__comment-submit/photo-container__comment-submit.css);
+
+@import url(../blocks/comment/comment.css);
+@import url(../blocks/comment/__avatar/comment__avatar.css);
+@import url(../blocks/comment/__content/comment__content.css);
+@import url(../blocks/comment/__header/comment__header.css);
+@import url(../blocks/comment/__author/comment__author.css);
+@import url(../blocks/comment/__date/comment__date.css);
+@import url(../blocks/comment/__text/comment__text.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+
+/* Вспомогательные классы */
+.hidden {
+  display: none;
+}

@@ -26,6 +26,15 @@ const jobInput = formProfile.querySelector('.form__input_profile-job'); // по�
 const formAvatar = document.querySelector('.form_edit-avatar'); // форма редактирования аватарки
 // ? форма добавление карточки
 const formPhoto = document.querySelector('.form_add-photo'); // форма добавления карточки
+// ? формы авторизации и регистрации
+const formLogin = document.querySelector('.form_login');
+const formRegister = document.querySelector('.form_register');
+// ? кнопки навигации
+const buttonLogin = document.querySelector('.header__login-button');
+const buttonRegister = document.querySelector('.header__register-button');
+const buttonLogout = document.querySelector('.header__logout-button');
+// ? данные пользователя в хедере
+const userEmail = document.querySelector('.header__user-email');
 
 const API_CONFIG = {
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
@@ -33,6 +42,10 @@ const API_CONFIG = {
     authorization: '78b845d7-f9bb-43fd-9d7f-fb92a3c4ec96',
     'Content-Type': 'application/json',
   },
+};
+
+const AUTH_CONFIG = {
+  baseUrl: 'https://auth.nomoreparties.co',
 };
 
 export {
@@ -46,5 +59,12 @@ export {
   jobInput,
   formAvatar,
   formPhoto,
+  formLogin,
+  formRegister,
+  buttonLogin,
+  buttonRegister,
+  buttonLogout,
+  userEmail,
   API_CONFIG,
+  AUTH_CONFIG,
 };

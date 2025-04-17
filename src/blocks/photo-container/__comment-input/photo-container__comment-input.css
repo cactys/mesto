@@ -1,0 +1,8 @@
+.photo-container__comment-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 17px;
+} 

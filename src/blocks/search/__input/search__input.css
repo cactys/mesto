@@ -1,0 +1,10 @@
+.search__input {
+  flex-grow: 1;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 14px;
+  line-height: 17px;
+  box-sizing: border-box;
+} 

@@ -1,0 +1,7 @@
+.photo-container__comments-list {
+  list-style: none;
+  margin: 0 0 15px;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+} 

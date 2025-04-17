@@ -1,0 +1,11 @@
+.search__filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .search__filters {
+    flex-wrap: wrap;
+  }
+} 
